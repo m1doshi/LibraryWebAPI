@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\unitofwork\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\services\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\services\\authorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\repositories\\interfaces\\ibookrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -18,15 +26,7 @@
       "AbsoluteMoniker": "D:0:0:{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}|..\\xUnit-tests\\xUnit-tests.csproj|c:\\users\\user\\desktop\\modsen tz\\xunit-tests\\servtests\\bookservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}|..\\xUnit-tests\\xUnit-tests.csproj|c:\\users\\user\\desktop\\modsen tz\\xunit-tests\\repostest\\userrepositorytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\unitofwork\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -48,46 +48,46 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserRepositoryTest.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
-              "RelativeDocumentMoniker": "..\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
-              "RelativeToolTip": "..\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAB8AAAA",
+              "DocumentIndex": 2,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\UserService.cs",
+              "RelativeToolTip": "WebAPI\\Services\\UserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T11:04:50.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\UnitOfWork\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "WebAPI\\UnitOfWork\\UnitOfWork.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\UnitOfWork\\UnitOfWork.cs",
-              "RelativeToolTip": "WebAPI\\UnitOfWork\\UnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:59:00.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\UnitOfWork\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "WebAPI\\UnitOfWork\\IUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\UnitOfWork\\IUnitOfWork.cs",
-              "RelativeToolTip": "WebAPI\\UnitOfWork\\IUnitOfWork.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:58:45.353Z",
+              "WhenOpened": "2024-09-11T13:34:09.291Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuthorService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\AuthorService.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Services\\AuthorService.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\AuthorService.cs",
+              "RelativeToolTip": "WebAPI\\Services\\AuthorService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T13:31:48.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Services\\BookService.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\BookService.cs",
+              "RelativeToolTip": "WebAPI\\Services\\BookService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-07T09:02:56.025Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "IBookRepository.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Repositories\\Interfaces\\IBookRepository.cs",
               "RelativeDocumentMoniker": "WebAPI\\Repositories\\Interfaces\\IBookRepository.cs",
@@ -95,12 +95,11 @@
               "RelativeToolTip": "WebAPI\\Repositories\\Interfaces\\IBookRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:24:12.625Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T10:24:12.625Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "UserModel.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Models\\UserModel.cs",
               "RelativeDocumentMoniker": "WebAPI\\Models\\UserModel.cs",
@@ -108,12 +107,11 @@
               "RelativeToolTip": "WebAPI\\Models\\UserModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:20:31.761Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T10:20:31.761Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "BookServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ServTests\\BookServiceTest.cs",
               "RelativeDocumentMoniker": "..\\xUnit-tests\\ServTests\\BookServiceTest.cs",
@@ -121,21 +119,19 @@
               "RelativeToolTip": "..\\xUnit-tests\\ServTests\\BookServiceTest.cs",
               "ViewState": "AQIAAGUAAAAAAAAAAAAqwHIAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:11:20.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T10:11:20.543Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\BookService.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Services\\BookService.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Services\\BookService.cs",
-              "RelativeToolTip": "WebAPI\\Services\\BookService.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAUwFQAAAA7AAAA",
+              "DocumentIndex": 6,
+              "Title": "UserRepositoryTest.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
+              "RelativeDocumentMoniker": "..\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
+              "RelativeToolTip": "..\\xUnit-tests\\ReposTest\\UserRepositoryTest.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAB8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T09:02:56.025Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T11:04:50.802Z"
             },
             {
               "$type": "Document",
@@ -147,8 +143,7 @@
               "RelativeToolTip": "WebAPI\\Entities\\User.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:20:25.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T10:20:25.834Z"
             },
             {
               "$type": "Document",
@@ -160,8 +155,7 @@
               "RelativeToolTip": "WebAPI\\Controllers\\BookController.cs",
               "ViewState": "AQIAAEkAAAAAAAAAAAAwwGAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-07T10:08:16.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-07T10:08:16.794Z"
             }
           ]
         }

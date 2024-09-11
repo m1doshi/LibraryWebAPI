@@ -8,16 +8,14 @@ namespace WebAPI.Services
 {
     public class BookService : IBookService
     {
-        private readonly IBookRepository bookRepository;
         private readonly IUnitOfWork unitOfWork;
-        public BookService(IBookRepository bookRepository, IUnitOfWork unitOfWork)
+        public BookService(IUnitOfWork unitOfWork)
         {
-            this.bookRepository = bookRepository;
             this.unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
         {
-            return await bookRepository.GetAllBooks(pageNumber, pageSize);
+            return await unitOfWork.Books.GetAllBooks(pageNumber, pageSize);
         }
         public async Task<BookModel> GetBookById(int bookId)
         {

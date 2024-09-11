@@ -7,20 +7,18 @@ namespace WebAPI.Services
 {
     public class AuthorService : IAuthorService
     {
-        private readonly IAuthorRepository authorRepository;
         private readonly IUnitOfWork unitOfWork;
-        public AuthorService (IAuthorRepository authorRepository, IUnitOfWork unitOfWork)
+        public AuthorService (IUnitOfWork unitOfWork)
         {
-            this.authorRepository = authorRepository;
             this.unitOfWork = unitOfWork;
         }
         public async Task<IEnumerable<AuthorModel>> GetAllAuthors(int pageNumber, int pageSize)
         {
-            return await authorRepository.GetAllAuthors(pageNumber,pageSize);
+            return await unitOfWork.Authors.GetAllAuthors(pageNumber,pageSize);
         }
         public async Task<AuthorModel> GetAuthorById(int authorId)
         {
-            return await authorRepository.GetAuthorById(authorId);
+            return await unitOfWork.Authors.GetAuthorById(authorId);
         }
         public async Task<int> AddNewAuthor(AuthorModel author)
         {
@@ -39,7 +37,7 @@ namespace WebAPI.Services
         }
         public async Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
-            return await authorRepository.GetAllBooksByAuthor(authorId);
+            return await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
         }
     }
 }
