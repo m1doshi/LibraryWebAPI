@@ -163,3 +163,4 @@ C:\Users\user\Desktop\modsen TZ\xUnit-tests\obj\Debug\net8.0\refint\xUnit-tests.
 C:\Users\user\Desktop\modsen TZ\xUnit-tests\obj\Debug\net8.0\xUnit-tests.pdb
 C:\Users\user\Desktop\modsen TZ\xUnit-tests\obj\Debug\net8.0\xUnit-tests.genruntimeconfig.cache
 C:\Users\user\Desktop\modsen TZ\xUnit-tests\obj\Debug\net8.0\ref\xUnit-tests.dll
+C:\Users\user\Desktop\modsen TZ\xUnit-tests\obj\Debug\net8.0\xUnit-tests.sourcelink.json

@@ -1,18 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Xunit;
-using WebAPI.Models;
-using WebAPI.Repositories;
-using WebAPI.Entities;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Http;
-using Moq;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Serialization;
+using WebAPI.Application.DTOs;
+using WebAPI.Infrastructures.Repositories;
+using WebAPI.Domain.Entities;
 using WebAPI.Infrastructures.Persistence;
 
 namespace xUnit_tests.ReposTest

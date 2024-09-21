@@ -1,5 +1,4 @@
 ﻿using WebAPI.Application.Interfaces.Repositories;
-using WebAPI.Repositories;
 
 namespace WebAPI.Application.Interfaces.UnitOfWork
 {

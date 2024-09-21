@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services;
+using WebAPI.Application.Interfaces.Services.Book;
 
 namespace WebAPI.API.Controllers
 {
@@ -9,10 +10,22 @@ namespace WebAPI.API.Controllers
     [Route("bookController")]
     public class BookController : ControllerBase
     {
-        private readonly IBookService bookService;
-        public BookController(IBookService bookService)
+        private readonly IAddNewBookService addNewBookService;
+        private readonly IBookShareService bookShareService;
+        private readonly IDeleteBookService deleteBookService;
+        private readonly IGetBooksService getBooksService;
+        private readonly IUpdateBookService updateBookService;
+        private readonly IUpdateImageService updateImageService;
+        public BookController(IAddNewBookService addNewBookService, IBookShareService bookShareService,
+            IDeleteBookService deleteBookService, IGetBooksService getBooksService, IUpdateBookService updateBookService,
+            IUpdateImageService updateImageService)
         {
-            this.bookService = bookService;
+           this.addNewBookService = addNewBookService;
+           this.bookShareService = bookShareService;
+           this.deleteBookService = deleteBookService;
+           this.getBooksService = getBooksService;
+           this.updateBookService = updateBookService;
+           this.updateImageService = updateImageService;
         }
 
         [HttpGet("getAllBooks")]
@@ -21,7 +34,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAllBooks(int pageNumber, int pageSize)
         {
-            return Ok(await bookService.GetAllBooks(pageNumber, pageSize));
+            return Ok(await getBooksService.GetAllBooks(pageNumber, pageSize));
         }
 
         [HttpGet("getBookById")]
@@ -30,7 +43,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetBookById(int bookId)
         {
-            return Ok(await bookService.GetBookById(bookId));
+            return Ok(await getBooksService.GetBookById(bookId));
         }
 
         [HttpGet("getBookByISBN")]
@@ -39,7 +52,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetBookByISBN(string isbn)
         {
-            return Ok(await bookService.GetBookByISBN(isbn));
+            return Ok(await getBooksService.GetBookByISBN(isbn));
         }
 
         [HttpPost("addNewBook")]
@@ -48,7 +61,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AddNewBook(BookModel book)
         {
-            return Ok(await bookService.AddNewBook(book));
+            return Ok(await addNewBookService.AddNewBook(book));
         }
 
         [HttpPost("updateBook")]
@@ -57,7 +70,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateBook(int bookId, UpdateBookRequest data)
         {
-            return Ok(await bookService.UpdateBook(bookId, data));
+            return Ok(await updateBookService.UpdateBook(bookId, data));
         }
 
         [HttpDelete("deleteBook")]
@@ -66,7 +79,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteBook(int bookId)
         {
-            return Ok(await bookService.DeleteBook(bookId));
+            return Ok(await deleteBookService.DeleteBook(bookId));
         }
 
         [HttpPost("updateImage")]
@@ -75,7 +88,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateImage(int bookId, IFormFile image)
         {
-            return Ok(await bookService.UpdateImage(bookId, image));
+            return Ok(await updateImageService.UpdateImage(bookId, image));
         }
 
         [HttpPost("issueBook")]
@@ -84,7 +97,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> IssueBook(int bookId, int userId, DateTime returnDate)
         {
-            return Ok(await bookService.IssueBook(bookId, userId, returnDate));
+            return Ok(await bookShareService.IssueBook(bookId, userId, returnDate));
         }
 
         [HttpPost("returnBook")]
@@ -93,7 +106,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> ReturnBook(int bookId)
         {
-            return Ok(await bookService.ReturnBook(bookId));
+            return Ok(await bookShareService.ReturnBook(bookId));
         }
     }
 }

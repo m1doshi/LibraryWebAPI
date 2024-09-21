@@ -5,7 +5,7 @@ VisualStudioVersion = 17.10.35201.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{C337584B-3221-4006-B228-7BE17DEE5A63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xUnit-tests", "..\xUnit-tests\xUnit-tests.csproj", "{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xUnit-tests", "..\xUnit-tests\xUnit-tests.csproj", "{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C337584B-3221-4006-B228-7BE17DEE5A63} = {C337584B-3221-4006-B228-7BE17DEE5A63}
 	EndProjectSection

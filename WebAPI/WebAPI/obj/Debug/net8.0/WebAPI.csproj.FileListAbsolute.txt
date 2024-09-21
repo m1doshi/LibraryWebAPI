@@ -138,7 +138,6 @@ C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\m
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.WebAPI.props
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.WebAPI.props
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\bundle\WebAPI.styles.css
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\projectbundle\WebAPI.bundle.scp.css
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.csproj.Up2Date
@@ -152,3 +151,5 @@ C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNe
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\API\Views\Shared\_Layout.cshtml.rz.scp.css

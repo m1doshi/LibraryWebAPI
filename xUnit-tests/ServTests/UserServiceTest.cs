@@ -1,22 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Xunit;
-using WebAPI.Repositories;
-using WebAPI.Entities;
-using WebAPI.Database;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Http;
-using Moq;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Serialization;
-using WebAPI.Infrastructure;
-using Microsoft.Extensions.Options;
-using System.Drawing.Text;
-using WebAPI.Services.Interfaces;
+﻿using Moq;
 using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Application.UseCases.Users;
@@ -32,7 +14,8 @@ namespace xUnit_tests.ServTests
         private readonly Mock<IUserRepository> userRepository;
         private readonly Mock<IPasswordHasher> passwordHasher;
         private readonly Mock<IJwtProvider> jwtProvider;
-        private readonly UserService userService;
+        private readonly RegisterUseCase registerUseCase;
+        private readonly LoginUseCase loginUseCase;
 
         public UserServiceTest()
         {
@@ -42,7 +25,8 @@ namespace xUnit_tests.ServTests
             jwtProvider = new Mock<IJwtProvider>();
             unitOfWork.Setup(u=>u.Users).Returns(userRepository.Object);
             unitOfWork.Setup(u => u.SaveChangesAsync()).ReturnsAsync(1);
-            userService = new UserService(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object);
+            registerUseCase = new RegisterUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object);
+            loginUseCase = new LoginUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object);
         }
 
         [Fact]
@@ -55,7 +39,7 @@ namespace xUnit_tests.ServTests
             passwordHasher.Setup(p => p.Generate(password)).Returns(hashedPassword);
             userRepository.Setup(r => r.AddNewUser(It.IsAny<UserModel>())).ReturnsAsync(true);
 
-            var result = await userService.Register(userName, email, password);
+            var result = await registerUseCase.Register(userName, email, password);
             Assert.NotEqual(0, result);
 
             passwordHasher.Verify(p => p.Generate(password), Times.Once());
@@ -82,7 +66,7 @@ namespace xUnit_tests.ServTests
             passwordHasher.Setup(p => p.Verify(password, hashedPassword)).Returns(true);
             jwtProvider.Setup(j => j.GenerateToken(user)).Returns(token);
 
-            var result = await userService.Login(email, password);
+            var result = await loginUseCase.Login(email, password);
 
             Assert.Equal(token, result);
             userRepository.Verify(r => r.GetUserByEmail(email), Times.Once());
@@ -107,7 +91,7 @@ namespace xUnit_tests.ServTests
             userRepository.Setup(r => r.GetUserByEmail(email)).ReturnsAsync(user);
             passwordHasher.Setup(p => p.Verify(password, hashedPassword)).Returns(false);
 
-            await Assert.ThrowsAsync<Exception>(() => userService.Login(email, password));
+            await Assert.ThrowsAsync<Exception>(() => loginUseCase.Login(email, password));
 
             userRepository.Verify(r => r.GetUserByEmail(email), Times.Once());
             passwordHasher.Verify(p => p.Verify(password, hashedPassword), Times.Once());

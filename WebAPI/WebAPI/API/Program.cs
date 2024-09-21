@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using WebAPI.Application.Interfaces.Repositories;
-using WebAPI.Application.Interfaces.Services;
+using WebAPI.API.Extensions;
+using WebAPI.Application.Interfaces.Services.Authors;
+using WebAPI.Application.Interfaces.Services.Book;
+using WebAPI.Application.Interfaces.Services.Users;
 using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Application.UseCases.Authors;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.Application.UseCases.Users;
-using WebAPI.Infrastructures.Repositories;
-using WebAPI.Infrastructures.Persistence;
 using WebAPI.Infrastructures.Interfaces;
-using WebAPI.API.Extensions;
+using WebAPI.Infrastructures.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -18,12 +17,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseConfig")));
-builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddScoped<IAuthorService, AuthorService>();
-builder.Services.AddScoped<IBookService, BookService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAddNewBookService, AddNewBookUseCase>();
+builder.Services.AddScoped<IBookShareService, BookShareUseCase>();
+builder.Services.AddScoped<IDeleteBookService, DeleteBookUseCase>();
+builder.Services.AddScoped<IGetBooksService, GetBooksUseCase>();
+builder.Services.AddScoped<IUpdateBookService, UpdateBookUseCase>();
+builder.Services.AddScoped<IUpdateImageService, UpdateImageUseCase>();
+builder.Services.AddScoped<IAddNewAuthorService, AddNewAuthorUseCase>();
+builder.Services.AddScoped<IDeleteAuthorService, DeleteAuthorUseCase>();
+builder.Services.AddScoped<IGetAllBooksByAuthorService, GetAllBooksByAuthorUseCase>();
+builder.Services.AddScoped<IGetAuthorsService, GetAuthorsUseCase>();
+builder.Services.AddScoped<IUpdateAuthorService, UpdateAuthorUseCase>();
+builder.Services.AddScoped<ILoginService, LoginUseCase>();
+builder.Services.AddScoped<IRegisterService, RegisterUseCase>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -35,7 +41,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();

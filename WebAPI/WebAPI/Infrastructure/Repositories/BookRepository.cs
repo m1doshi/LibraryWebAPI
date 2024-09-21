@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebAPI.UnitOfWork;
+using WebAPI.Infrastructures.Persistence;
 using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.DTOs;
 using WebAPI.Domain.Entities;
-using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Infrastructures.Repositories
 {

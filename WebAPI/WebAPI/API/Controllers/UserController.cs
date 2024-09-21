@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services;
+using WebAPI.Application.Interfaces.Services.Users;
 
 namespace WebAPI.API.Controllers
 {
@@ -9,11 +9,13 @@ namespace WebAPI.API.Controllers
     [Route("userController")]
     public class UserController : ControllerBase
     {
-        private readonly IUserService userService;
+        private readonly ILoginService loginService;
+        private readonly IRegisterService registerService;
 
-        public UserController(IUserService userService)
+        public UserController(ILoginService loginService, IRegisterService registerService)
         {
-            this.userService = userService;
+            this.registerService = registerService;
+            this.loginService = loginService;
         }
 
         [HttpPost("registration")]
@@ -22,7 +24,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Register(RegisterUserRequest userRequest)
         {
-            var result = await userService.Register(userRequest.UserName, userRequest.Email, userRequest.Password);
+            var result = await registerService.Register(userRequest.UserName, userRequest.Email, userRequest.Password);
             return Ok(result);
         }
 
@@ -32,7 +34,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Login(LoginUserRequest userRequest)
         {
-            return Ok(await userService.Login(userRequest.Email, userRequest.Password));
+            return Ok(await loginService.Login(userRequest.Email, userRequest.Password));
         }
 
 
