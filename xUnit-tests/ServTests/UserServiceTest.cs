@@ -4,6 +4,7 @@ using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Application.UseCases.Users;
 using WebAPI.Application.DTOs;
 using WebAPI.Infrastructures.Interfaces;
+using WebAPI.Infrastructure.Interfaces;
 
 
 namespace xUnit_tests.ServTests
@@ -14,6 +15,7 @@ namespace xUnit_tests.ServTests
         private readonly Mock<IUserRepository> userRepository;
         private readonly Mock<IPasswordHasher> passwordHasher;
         private readonly Mock<IJwtProvider> jwtProvider;
+        private readonly Mock<IRefreshProvider> refreshProvider;
         private readonly RegisterUseCase registerUseCase;
         private readonly LoginUseCase loginUseCase;
 
@@ -23,10 +25,11 @@ namespace xUnit_tests.ServTests
             userRepository = new Mock<IUserRepository>();
             passwordHasher = new Mock<IPasswordHasher>();
             jwtProvider = new Mock<IJwtProvider>();
+            refreshProvider = new Mock<IRefreshProvider>();
             unitOfWork.Setup(u=>u.Users).Returns(userRepository.Object);
             unitOfWork.Setup(u => u.SaveChangesAsync()).ReturnsAsync(1);
-            registerUseCase = new RegisterUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object);
-            loginUseCase = new LoginUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object);
+            registerUseCase = new RegisterUseCase(unitOfWork.Object, passwordHasher.Object);
+            loginUseCase = new LoginUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object, refreshProvider.Object);
         }
 
         [Fact]
@@ -68,7 +71,7 @@ namespace xUnit_tests.ServTests
 
             var result = await loginUseCase.Login(email, password);
 
-            Assert.Equal(token, result);
+            Assert.Equal(token, result.Token);
             userRepository.Verify(r => r.GetUserByEmail(email), Times.Once());
             passwordHasher.Verify(p => p.Verify(password, hashedPassword), Times.Once());
             jwtProvider.Verify(j => j.GenerateToken(user), Times.Once());

@@ -17,12 +17,7 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
         {
-            pageNumber = pageNumber < 1 ? 1 : pageNumber;
-            pageSize = pageSize < 1 ? 1 : pageSize;
-
             var skip = (pageNumber - 1) * pageSize;
-
-
             return await dbContext.Books.Skip(skip).Take(pageSize).Select(b => new BookModel
             {
                 BookID = b.BookID,
@@ -67,7 +62,6 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<bool> AddNewBook(BookModel book)
         {
             Book newBook = new();
-            //newBook.BookID = book.BookID;
             newBook.ISBN = book.ISBN;
             newBook.BookTitle = book.BookTitle;
             newBook.Genre = book.Genre;
@@ -90,7 +84,6 @@ namespace WebAPI.Infrastructures.Repositories
         {
             var book = dbContext.Books.Where(b => b.BookID == bookId).FirstOrDefault();
             if (book == null) return false;
-
             book.ISBN = data.ISBN;
             book.BookTitle = data.BookTitle;
             book.Genre = data.Genre;
@@ -106,13 +99,10 @@ namespace WebAPI.Infrastructures.Repositories
         {
             var book = dbContext.Books.Where(b => b.BookID == bookId).FirstOrDefault();
             if (book == null) return false;
-            if (image != null && image.Length > 0)
+            using (var memoryStream = new MemoryStream())
             {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await image.CopyToAsync(memoryStream);
-                    book.Image = memoryStream.ToArray();
-                }
+                await image.CopyToAsync(memoryStream);
+                book.Image = memoryStream.ToArray();
             }
             return true;
         }

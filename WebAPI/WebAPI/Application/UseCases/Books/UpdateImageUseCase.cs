@@ -13,7 +13,10 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async Task<int> UpdateImage(int bookId, IFormFile image)
         {
-            await unitOfWork.Books.UpdateImage(bookId, image);
+            if (bookId>0 && image != null && image.Length > 0)
+            {
+                await unitOfWork.Books.UpdateImage(bookId, image);
+            }
             return await unitOfWork.SaveChangesAsync();
         }
     }

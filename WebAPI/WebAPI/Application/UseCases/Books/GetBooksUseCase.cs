@@ -13,6 +13,8 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
         {
+            pageNumber = pageNumber < 1 ? 1 : pageNumber;
+            pageSize = pageSize < 1 ? 1 : pageSize;
             return await unitOfWork.Books.GetAllBooks(pageNumber, pageSize);
         }
         public async Task<BookModel> GetBookById(int bookId)

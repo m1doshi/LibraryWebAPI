@@ -1,7 +1,9 @@
-﻿namespace WebAPI.Application.Interfaces.Services.Users
+﻿using WebAPI.Application.DTOs;
+
+namespace WebAPI.Application.Interfaces.Services.Users
 {
     public interface ILoginService
     {
-        Task<string> Login(string email, string password);
+        Task<AuthenticationResponce> Login(string email, string password);
     }
 }

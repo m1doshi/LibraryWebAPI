@@ -23,7 +23,7 @@ namespace WebAPI.Domain.Entities
         public string Description { get; set; }
 
         [Column("AuthorID")]
-        public int AuthorID { get; set; }
+        public int? AuthorID { get; set; }
 
         [Column("PickUpTime")]
         public DateTime? PickUpTime { get; set; }

@@ -7,5 +7,7 @@ namespace WebAPI.Application.Interfaces.Repositories
         Task<bool> AddNewUser(UserModel user);
         Task<UserModel> GetUserByEmail(string email);
         Task<UserModel> GetUserById(int userId);
+        Task<UserModel> GetUserByRefreshToken(string refreshToken);
+        Task<bool> UpdateUser(UserModel updatedUser);
     }
 }

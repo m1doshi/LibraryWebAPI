@@ -17,9 +17,9 @@ namespace WebAPI.Domain.Entities
         public string LastName { get; set; }
 
         [Column("Birthday")]
-        public DateOnly Birthday { get; set; }
+        public DateOnly? Birthday { get; set; }
 
         [Column("Country")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
     }
 }

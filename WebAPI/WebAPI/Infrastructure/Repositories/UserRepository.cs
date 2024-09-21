@@ -46,5 +46,23 @@ namespace WebAPI.Infrastructures.Repositories
                 Email = u.Email
             }).FirstOrDefaultAsync();
         }
+
+        public async Task<UserModel> GetUserByRefreshToken(string refreshToken)
+        {
+            return await dbContext.Users.Where(u => u.RefreshToken == refreshToken).Select(u => new UserModel
+            {
+                RefreshToken = u.RefreshToken,
+                RefreshTokenExpireTime = u.RefreshTokenExpireTime
+            }).FirstOrDefaultAsync();
+        }
+        public async Task<bool> UpdateUser(UserModel updatedUser)
+        {
+            var user = await dbContext.Users.FindAsync(updatedUser.UserID);
+            if (user == null) return false;
+            user.RefreshTokenExpireTime = updatedUser.RefreshTokenExpireTime;
+            user.RefreshToken = updatedUser.RefreshToken;
+            return true;
+        }
+
     }
 }

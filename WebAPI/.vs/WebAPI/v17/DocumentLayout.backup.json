@@ -1,12 +1,53 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}|..\\xUnit-tests\\xUnit-tests.csproj|c:\\users\\user\\desktop\\modsen tz\\xunit-tests\\servtests\\userservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthorController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\AuthorController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\API\\Controllers\\AuthorController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\AuthorController.cs",
+              "RelativeToolTip": "WebAPI\\API\\Controllers\\AuthorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T16:47:45.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ServTests\\UserServiceTest.cs",
+              "RelativeDocumentMoniker": "..\\xUnit-tests\\ServTests\\UserServiceTest.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ServTests\\UserServiceTest.cs",
+              "RelativeToolTip": "..\\xUnit-tests\\ServTests\\UserServiceTest.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADgvxYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-21T16:44:56.311Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

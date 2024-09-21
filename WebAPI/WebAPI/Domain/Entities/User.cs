@@ -18,5 +18,11 @@ namespace WebAPI.Domain.Entities
 
         [Column("Email")]
         public string Email { get; set; }
+
+        [Column("RefreshToken")]
+        public string RefreshToken { get; set; }
+
+        [Column("RefreshTokenExpireTime")]
+        public DateTime RefreshTokenExpireTime { get; set; }
     }
 }

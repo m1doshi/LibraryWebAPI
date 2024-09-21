@@ -16,11 +16,7 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<IEnumerable<AuthorModel>> GetAllAuthors(int pageNumber, int pageSize)
         {
-            pageNumber = pageNumber < 1 ? 1 : pageNumber;
-            pageSize = pageSize < 1 ? 1 : pageSize;
-
             var skip = (pageNumber - 1) * pageSize;
-
             return await dbContext.Authors.Skip(skip).Take(pageSize).Select(a => new AuthorModel
             {
                 AuthorID = a.AuthorID,
@@ -46,7 +42,6 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<bool> AddNewAuthor(AuthorModel author)
         {
             Author newAuthor = new();
-            //newAuthor.AuthorID = author.AuthorID;
             newAuthor.FirstName = author.FirstName;
             newAuthor.LastName = author.LastName;
             newAuthor.Birthday = author.Birthday;
@@ -76,10 +71,10 @@ namespace WebAPI.Infrastructures.Repositories
         {
             var author = await dbContext.Authors.Where(a => a.AuthorID == authorId).FirstOrDefaultAsync();
             if (author == null) return false;
-            author.FirstName = data.FirstName == null ? author.FirstName : data.FirstName;
-            author.LastName = data.LastName == null ? author.LastName : data.LastName;
-            author.Country = data.Country == null ? author.Country : data.Country;
-            author.Birthday = data.Birthday.ToString() == null ? author.Birthday : data.Birthday;
+            author.FirstName = data.FirstName;
+            author.LastName = data.LastName;
+            author.Country = data.Country;
+            author.Birthday = data.Birthday;
             return true;
         }
         private IQueryable<AuthorModel> GetAuthors()

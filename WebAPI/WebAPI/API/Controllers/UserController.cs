@@ -12,11 +12,13 @@ namespace WebAPI.API.Controllers
     {
         private readonly ILoginService loginService;
         private readonly IRegisterService registerService;
+        private readonly IUpdateTokensService updateTokensService;
 
-        public UserController(ILoginService loginService, IRegisterService registerService)
+        public UserController(ILoginService loginService, IRegisterService registerService, IUpdateTokensService updateTokensService)
         {
             this.registerService = registerService;
             this.loginService = loginService;
+            this.updateTokensService = updateTokensService;
         }
 
         [HttpPost("registration")]
@@ -38,6 +40,15 @@ namespace WebAPI.API.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             return Ok(await loginService.Login(userRequest.Email, userRequest.Password));
+        }
+
+        [HttpPost("refresh-token")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdateTokens(RefreshTokenRequest tokenRequest)
+        {
+            return Ok(await updateTokensService.UpdateTokens(tokenRequest));
         }
 
 

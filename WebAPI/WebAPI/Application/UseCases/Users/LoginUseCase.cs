@@ -1,7 +1,9 @@
-﻿using WebAPI.Application.Interfaces.Services.Users;
+﻿using System.Drawing.Text;
+using WebAPI.Application.Interfaces.Services.Users;
 using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Infrastructure.Interfaces;
 using WebAPI.Infrastructures.Interfaces;
-using WebAPI.Infrastructures.Persistence;
+using WebAPI.Application.DTOs;
 
 namespace WebAPI.Application.UseCases.Users
 {
@@ -10,19 +12,34 @@ namespace WebAPI.Application.UseCases.Users
         private readonly IUnitOfWork unitOfWork;
         private readonly IPasswordHasher passwordHasher;
         private readonly IJwtProvider jwtProvider;
-        public LoginUseCase(IUnitOfWork unitOfWork, IPasswordHasher passwordHasher, IJwtProvider jwtProvider)
+        private readonly IRefreshProvider refreshProvider;
+        public LoginUseCase(IUnitOfWork unitOfWork, 
+            IPasswordHasher passwordHasher, 
+            IJwtProvider jwtProvider, 
+            IRefreshProvider refreshProvider)
         {
             this.unitOfWork = unitOfWork;
             this.passwordHasher = passwordHasher;
             this.jwtProvider = jwtProvider;
+            this.refreshProvider = refreshProvider;
         }
-        public async Task<string> Login(string email, string password)
+        public async Task<AuthenticationResponce> Login(string email, string password)
         {
             var user = await unitOfWork.Users.GetUserByEmail(email);
             var result = passwordHasher.Verify(password, user.PasswordHash);
             if (result == false) throw new Exception("Failed to login");
             var token = jwtProvider.GenerateToken(user);
-            return token;
+            var refreshToken = refreshProvider.GenerateRefreshToken();
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7);
+            await unitOfWork.Users.UpdateUser(user);
+            await unitOfWork.SaveChangesAsync();
+
+            return new AuthenticationResponce
+            {
+                Token = token,
+                RefreshToken = refreshToken
+            };
         }
     }
 }
