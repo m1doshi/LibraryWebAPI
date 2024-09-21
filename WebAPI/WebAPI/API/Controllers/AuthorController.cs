@@ -49,6 +49,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> AddNewAuthor(AuthorModel author)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             return Ok(await addNewAuthorService.AddNewAuthor(author));
         }
 
@@ -58,6 +59,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateAuthor(int authorId, UpdateAuthorRequest data)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             return Ok(await updateAuthorService.UpdateAuthor(authorId, data));
         }
 

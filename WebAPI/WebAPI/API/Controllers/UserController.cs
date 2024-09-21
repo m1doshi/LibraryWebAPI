@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Users;
 
@@ -24,6 +25,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Register(RegisterUserRequest userRequest)
         {
+            if(!ModelState.IsValid) return BadRequest(ModelState);
             var result = await registerService.Register(userRequest.UserName, userRequest.Email, userRequest.Password);
             return Ok(result);
         }
@@ -34,6 +36,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Login(LoginUserRequest userRequest)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             return Ok(await loginService.Login(userRequest.Email, userRequest.Password));
         }
 
