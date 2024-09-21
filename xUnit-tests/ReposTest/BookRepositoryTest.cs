@@ -3,7 +3,6 @@ using Xunit;
 using WebAPI.Models;
 using WebAPI.Repositories;
 using WebAPI.Entities;
-using WebAPI.Database;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Moq;
+using WebAPI.Infrastructures.Persistence;
 
 namespace xUnit_tests.ReposTest
 {

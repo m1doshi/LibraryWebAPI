@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace WebAPI.Infrastructure.Interfaces
+namespace WebAPI.Infrastructures.Interfaces
 {
     public interface IPasswordHasher
     {

@@ -1,6 +1,6 @@
-﻿using WebAPI.Models;
+﻿using WebAPI.Application.DTOs;
 
-namespace WebAPI.Infrastructure.Interfaces
+namespace WebAPI.Infrastructures.Interfaces
 {
     public interface IJwtProvider
     {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Xunit;
-using WebAPI.Models;
 using WebAPI.Repositories;
 using WebAPI.Entities;
 using WebAPI.Database;
@@ -14,14 +13,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Moq;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Serialization;
-using WebAPI.Services;
 using WebAPI.Infrastructure;
 using Microsoft.Extensions.Options;
 using System.Drawing.Text;
-using WebAPI.Repositories.Interfaces;
-using WebAPI.Infrastructure.Interfaces;
 using WebAPI.Services.Interfaces;
-using WebAPI.UnitOfWork;
+using WebAPI.Application.Interfaces.Repositories;
+using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Application.UseCases.Users;
+using WebAPI.Application.DTOs;
+using WebAPI.Infrastructures.Interfaces;
 
 
 namespace xUnit_tests.ServTests
