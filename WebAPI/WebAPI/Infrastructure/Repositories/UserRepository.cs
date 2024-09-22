@@ -3,6 +3,8 @@ using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.DTOs;
 using WebAPI.Infrastructures.Persistence;
 using WebAPI.Domain.Entities;
+using System.Net;
+using WebAPI.Domain.Exceptions;
 
 namespace WebAPI.Infrastructures.Repositories
 {
@@ -27,38 +29,52 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<UserModel> GetUserByEmail(string email)
         {
-            return await dbContext.Users.Where(u => u.Email == email).Select(u => new UserModel
+            var user = await dbContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
+            if (user == null)
+                throw new EntityNotFoundException("User", email);
+            return new UserModel
             {
-                UserID = u.UserID,
-                UserName = u.UserName,
-                PasswordHash = u.PasswordHash,
-                Email = email
-            }).FirstOrDefaultAsync();
+                UserID = user.UserID,
+                UserName = user.UserName,
+                Email = user.Email,
+                RefreshToken = user.RefreshToken,
+                RefreshTokenExpireTime = user.RefreshTokenExpireTime
+            };
         }
 
         public async Task<UserModel> GetUserById(int userId)
         {
-            return await dbContext.Users.Where(u => u.UserID == userId).Select(u => new UserModel
+            var user = await dbContext.Users.FindAsync(userId);
+            if (user == null)
+                throw new EntityNotFoundException("User", userId);
+            return new UserModel
             {
-                UserID = u.UserID,
-                UserName = u.UserName,
-                PasswordHash = u.PasswordHash,
-                Email = u.Email
-            }).FirstOrDefaultAsync();
+                UserID = user.UserID,
+                UserName = user.UserName,
+                PasswordHash = user.PasswordHash,
+                Email = user.Email
+            };
         }
 
         public async Task<UserModel> GetUserByRefreshToken(string refreshToken)
         {
-            return await dbContext.Users.Where(u => u.RefreshToken == refreshToken).Select(u => new UserModel
+            var user = await dbContext.Users.Where(u => u.RefreshToken == refreshToken).FirstOrDefaultAsync();
+            if (user == null)
+                throw new EntityNotFoundException("User", refreshToken);
+            return new UserModel
             {
-                RefreshToken = u.RefreshToken,
-                RefreshTokenExpireTime = u.RefreshTokenExpireTime
-            }).FirstOrDefaultAsync();
+                UserID = user.UserID,
+                UserName = user.UserName,
+                Email = user.Email,
+                RefreshToken = user.RefreshToken,
+                RefreshTokenExpireTime = user.RefreshTokenExpireTime
+            };
         }
         public async Task<bool> UpdateUser(UserModel updatedUser)
         {
             var user = await dbContext.Users.FindAsync(updatedUser.UserID);
-            if (user == null) return false;
+            if (user == null)
+                throw new EntityNotFoundException("User", updatedUser.UserID);
             user.RefreshTokenExpireTime = updatedUser.RefreshTokenExpireTime;
             user.RefreshToken = updatedUser.RefreshToken;
             return true;

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebAPI.Domain.Exceptions;
 
 namespace WebAPI.Domain.Entities
 {
@@ -39,6 +40,5 @@ namespace WebAPI.Domain.Entities
 
         [Column("UserID")]
         public int? UserID { get; set; }
-
     }
 }

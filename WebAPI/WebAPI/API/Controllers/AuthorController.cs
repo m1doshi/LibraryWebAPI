@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Authors;
@@ -34,6 +35,7 @@ namespace WebAPI.API.Controllers
         {
             return Ok(await getAuthorsService.GetAllAuthors(pageNumber, pageSize));
         }
+
         [HttpGet("getAuthorById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -1,5 +1,6 @@
 ﻿using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Infrastructure.Exceptions;
 
 namespace WebAPI.Infrastructures.Persistence
 {
@@ -22,7 +23,17 @@ namespace WebAPI.Infrastructures.Persistence
         }
         public async Task<int> SaveChangesAsync()
         {
-            return await context.SaveChangesAsync();
+            int result;
+            try
+            {
+                result = await context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                throw new DatabaseOperationException("An error occurred while saving data to the database.", 
+                    ex);
+            }
+            return result;
         }
         public void Dispose()
         {

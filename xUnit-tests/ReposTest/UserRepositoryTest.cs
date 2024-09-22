@@ -54,7 +54,7 @@ namespace xUnit_tests.ReposTest
         }
 
         [Fact]
-        public async Task GetUserByEmail_ShouldReturnNull_WhenUserDontExist()
+        public async Task GetUserByEmail_ShouldReturnNull_WhenUserDoesNotExist()
         {
             var context = GetInMemoryDbContext();
             var repository = new UserRepository(context);
@@ -62,5 +62,75 @@ namespace xUnit_tests.ReposTest
             Assert.Null(user);
         }
 
+        [Fact]
+        public async Task UpdateUser_ShouldUpdateUser_WhenUserExists()
+        {
+            var context = GetInMemoryDbContext();
+            var repository = new UserRepository(context);
+            var newUser = new User
+            {
+                UserID = 1,
+                UserName = "test1",
+                PasswordHash = "test1",
+                Email = "test1",
+                RefreshToken = "qwerty",
+                RefreshTokenExpireTime = DateTime.UtcNow
+            };
+            context.Users.Add(newUser);
+            await context.SaveChangesAsync();
+            var updatedUser = new UserModel { UserID = newUser.UserID, RefreshToken = "newQwerty",
+                RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7) };
+            await repository.UpdateUser(updatedUser);
+            await context.SaveChangesAsync();
+            var user = await context.Users.FindAsync(1);
+            Assert.Equal("newQwerty", user.RefreshToken);
+        }
+
+        [Fact]
+        public async Task UpdateUser_ShouldReturnNull_WhenUserDoesNotExist()
+        {
+            var context = GetInMemoryDbContext();
+            var repository = new UserRepository(context);
+            var updatedUser = new UserModel
+            {
+                UserID = 100,
+                RefreshToken = "newQwerty",
+                RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7)
+            };
+            await repository.UpdateUser(updatedUser);
+            await context.SaveChangesAsync();
+            var user = context.Users.Find(100);
+            Assert.Null(user);
+        }
+
+        [Fact]
+        public async Task GetUserByRefreshToken_ShouldReturnUser_WhenUserExists()
+        {
+            var context = GetInMemoryDbContext();
+            var repository = new UserRepository(context);
+            var newUser = new User
+            {
+                UserID = 1,
+                UserName = "test1",
+                PasswordHash = "test1",
+                Email = "test1",
+                RefreshToken = "qwerty",
+                RefreshTokenExpireTime = DateTime.UtcNow
+            };
+            await context.Users.AddAsync(newUser);
+            await context.SaveChangesAsync();
+            var user = await repository.GetUserByRefreshToken("qwerty");
+            Assert.Equal(1, user.UserID);
+            Assert.Equal("test1", user.UserName);
+        }
+
+        [Fact]
+        public async Task GetUserByRefreshToken_ShouldReturnNull_WhenUserDoesNotExist()
+        {
+            var context = GetInMemoryDbContext();
+            var repository = new UserRepository(context);
+            var user = await repository.GetUserByRefreshToken("doesNotExist");
+            Assert.Null(user);
+        }
     }
 }

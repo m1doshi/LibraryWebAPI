@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Users;
+using WebAPI.Application.Exceptions;
 
 namespace WebAPI.API.Controllers
 {
@@ -27,7 +29,14 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Register(RegisterUserRequest userRequest)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
+            if (!TryValidateModel(userRequest))
+            {
+                var validationErrors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                throw new ValidationException("Validation failed", validationErrors);
+            }
             var result = await registerService.Register(userRequest.UserName, userRequest.Email, userRequest.Password);
             return Ok(result);
         }
@@ -38,7 +47,14 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> Login(LoginUserRequest userRequest)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!TryValidateModel(userRequest))
+            {
+                var validationErrors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                throw new ValidationException("Validation failed", validationErrors);
+            }
             return Ok(await loginService.Login(userRequest.Email, userRequest.Password));
         }
 

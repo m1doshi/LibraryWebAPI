@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Newtonsoft.Json;
 using System.Net;
-using System.Threading.Tasks;
+using WebAPI.Application.Exceptions;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Infrastructure.Exceptions;
 
 namespace WebAPI.API.ExceptionHandler
 {
@@ -32,13 +30,30 @@ namespace WebAPI.API.ExceptionHandler
 
         private static Task HandleExceptionMessage(HttpContext context, Exception exception)
         {
-            context.Response.ContentType = "application/json";
             int statusCode = (int)HttpStatusCode.InternalServerError;
-            var result = JsonConvert.SerializeObject(new
+            var result = String.Empty;
+            switch (exception)
             {
-                StatusCode = statusCode,
-                ErrorMessage = exception.Message
-            });
+                case ValidationException validationException:
+                    statusCode = (int)HttpStatusCode.BadRequest;
+                    result = JsonConvert.SerializeObject(new { errors = validationException.Message });
+                    break;
+                case BusinessRuleViolationException businessRuleViolationException:
+                    statusCode = (int)HttpStatusCode.BadRequest;
+                    result = JsonConvert.SerializeObject(new { errors = businessRuleViolationException.Message });
+                    break;
+                case EntityNotFoundException entityNotFoundException:
+                    statusCode= (int)HttpStatusCode.NotFound;
+                    result = JsonConvert.SerializeObject(new { errors = entityNotFoundException.Message });
+                    break;
+                case DatabaseOperationException databaseOperationException:
+                    statusCode = (int)HttpStatusCode.InternalServerError;
+                    result = JsonConvert.SerializeObject(new { errors = databaseOperationException.Message });
+                    break;
+                default:
+                    result = JsonConvert.SerializeObject(new { errors = "Inner exception" });
+                    break;
+            }
             context.Response.StatusCode = statusCode;
             context.Response.ContentType = "application/json";
             return context.Response.WriteAsync(result);

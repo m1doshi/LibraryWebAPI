@@ -3,6 +3,7 @@ using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.DTOs;
 using WebAPI.Infrastructures.Persistence;
 using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
 
 namespace WebAPI.Infrastructures.Repositories
 {
@@ -29,14 +30,17 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<AuthorModel> GetAuthorById(int authorId)
         {
-            return await dbContext.Authors.Where(a => a.AuthorID == authorId).Select(a => new AuthorModel
+            var author = await dbContext.Authors.FindAsync(authorId);
+            if (author == null)
+                throw new EntityNotFoundException("Author", authorId);
+            return new AuthorModel
             {
-                AuthorID = a.AuthorID,
-                FirstName = a.FirstName,
-                LastName = a.LastName,
-                Birthday = a.Birthday,
-                Country = a.Country
-            }).FirstOrDefaultAsync();
+                AuthorID = author.AuthorID,
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                Birthday = author.Birthday,
+                Country = author.Country
+            };
         }
 
         public async Task<bool> AddNewAuthor(AuthorModel author)
@@ -53,12 +57,16 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<bool> DeleteAuthor(int authorId)
         {
             var author = await dbContext.Authors.FindAsync(authorId);
-            if (author == null) return false;
+            if (author == null)
+                throw new EntityNotFoundException("Author", authorId);
             dbContext.Remove(author);
             return true;
         }
         public async Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
+            var author = await dbContext.Authors.FindAsync(authorId);
+            if (author == null)
+                throw new EntityNotFoundException("Author", authorId);
             return await dbContext.Books.Where(b => b.AuthorID == authorId).Select(b => new BookModel
             {
                 ISBN = b.ISBN,
@@ -69,8 +77,9 @@ namespace WebAPI.Infrastructures.Repositories
         }
         public async Task<bool> UpdateAuthor(int authorId, UpdateAuthorRequest data)
         {
-            var author = await dbContext.Authors.Where(a => a.AuthorID == authorId).FirstOrDefaultAsync();
-            if (author == null) return false;
+            var author = await dbContext.Authors.FindAsync(authorId);
+            if (author == null)
+                throw new EntityNotFoundException("Author", authorId);
             author.FirstName = data.FirstName;
             author.LastName = data.LastName;
             author.Country = data.Country;

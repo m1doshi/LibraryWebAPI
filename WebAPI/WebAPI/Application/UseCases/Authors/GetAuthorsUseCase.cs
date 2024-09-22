@@ -1,4 +1,6 @@
-﻿using WebAPI.Application.DTOs;
+﻿using System.Runtime.CompilerServices;
+using WebAPI.Application.DTOs;
+using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.Interfaces.Services.Authors;
 using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Persistence;

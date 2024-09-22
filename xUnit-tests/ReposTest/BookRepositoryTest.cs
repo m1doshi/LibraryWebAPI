@@ -147,7 +147,6 @@ namespace xUnit_tests.ReposTest
             };
             context.Books.Add(newBook);
             await context.SaveChangesAsync();
-
             var newData = new UpdateBookRequest { ISBN = "001", Genre = "test001" };
             await repository.UpdateBook(1, newData);
             await context.SaveChangesAsync();

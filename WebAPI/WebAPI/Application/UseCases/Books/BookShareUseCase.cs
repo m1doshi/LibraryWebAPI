@@ -1,6 +1,7 @@
 ﻿using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Book;
 using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Exceptions;
 using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Application.UseCases.Books
@@ -17,11 +18,9 @@ namespace WebAPI.Application.UseCases.Books
             var book = await unitOfWork.Books.GetBookById(bookId);
             if (book == null || book.IsAvailable == 0)
             {
-                throw new Exception("The book is unavailable");
+                throw new BusinessRuleViolationException("The book is unavailable");
             }
             var user = await unitOfWork.Users.GetUserById(userId);
-            if (user == null) throw new Exception("User not found");
-
             var bookModel = new UpdateBookRequest();
             bookModel.PickUpTime = DateTime.Now;
             bookModel.ReturnTime = returnDate;
@@ -38,7 +37,7 @@ namespace WebAPI.Application.UseCases.Books
             var book = await unitOfWork.Books.GetBookById(bookId);
             if (book == null || book.IsAvailable == 1)
             {
-                throw new Exception("The book is already returned or not found");
+                throw new BusinessRuleViolationException("The book is already returned or not found");
             }
             var bookModel = new UpdateBookRequest();
             bookModel.PickUpTime = null;
