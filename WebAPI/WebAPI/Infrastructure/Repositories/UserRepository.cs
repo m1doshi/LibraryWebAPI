@@ -75,6 +75,8 @@ namespace WebAPI.Infrastructures.Repositories
             var user = await dbContext.Users.FindAsync(updatedUser.UserID);
             if (user == null)
                 throw new EntityNotFoundException("User", updatedUser.UserID);
+            user.UserName = updatedUser.UserName;
+            user.RoleID = updatedUser.RoleID;
             user.RefreshTokenExpireTime = updatedUser.RefreshTokenExpireTime;
             user.RefreshToken = updatedUser.RefreshToken;
             return true;

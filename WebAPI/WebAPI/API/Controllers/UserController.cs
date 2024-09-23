@@ -16,16 +16,20 @@ namespace WebAPI.API.Controllers
         private readonly ILoginService loginService;
         private readonly IRegisterService registerService;
         private readonly IUpdateTokensService updateTokensService;
+        private readonly IUpdateUserService updateUserService;
 
-        public UserController(ILoginService loginService, IRegisterService registerService, IUpdateTokensService updateTokensService)
+        public UserController(ILoginService loginService, 
+            IRegisterService registerService, 
+            IUpdateTokensService updateTokensService, 
+            IUpdateUserService updateUserService)
         {
             this.registerService = registerService;
             this.loginService = loginService;
             this.updateTokensService = updateTokensService;
+            this.updateUserService = updateUserService;
         }
 
         [HttpPost("registration")]
-        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -44,7 +48,6 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("login")]
-        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -69,6 +72,16 @@ namespace WebAPI.API.Controllers
         public async Task<ActionResult> UpdateTokens(RefreshTokenRequest tokenRequest)
         {
             return Ok(await updateTokensService.UpdateTokens(tokenRequest));
+        }
+
+        [HttpPost("updateUser")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> UpdateUser(UserModel updatedUser)
+        {
+            return Ok(await updateUserService.UpdateUser(updatedUser));
         }
 
 
