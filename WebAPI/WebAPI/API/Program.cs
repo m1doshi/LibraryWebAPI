@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using WebAPI.API.Extensions;
+using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Authors;
 using WebAPI.Application.Interfaces.Services.Book;
 using WebAPI.Application.Interfaces.Services.Users;
@@ -7,6 +12,7 @@ using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Application.UseCases.Authors;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.Application.UseCases.Users;
+using WebAPI.Domain.Entities;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Infrastructures.Persistence;
 
@@ -16,6 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
+builder.Services.AddApiAuthentication(builder.Services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
+builder.Services.AddSingleton<IAuthorizationHandler, RoleHierarchyHandler>();
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseConfig")));
 builder.Services.AddScoped<IAddNewBookService, AddNewBookUseCase>();
 builder.Services.AddScoped<IBookShareService, BookShareUseCase>();

@@ -24,7 +24,15 @@ namespace WebAPI.API.Extensions
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.SecretKey))
                     };
                 });
-            services.AddAuthorization();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("LibrarianOnly", policy =>
+                    policy.Requirements.Add(new RoleHierarchyRequirement("Librarian", "Admin")));
+                options.AddPolicy("UserOnly", policy =>
+                    policy.Requirements.Add(new RoleHierarchyRequirement("User", "Librarian", "Admin")));
+                options.AddPolicy("AdminOnly", policy =>
+                    policy.Requirements.Add(new RoleHierarchyRequirement("Admin")));
+            });
         }
 
     }

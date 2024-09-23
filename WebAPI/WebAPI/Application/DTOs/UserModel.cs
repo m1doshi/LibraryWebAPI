@@ -8,5 +8,7 @@
         public string Email { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpireTime { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

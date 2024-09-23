@@ -17,7 +17,7 @@ namespace WebAPI.Infrastructures.Persistence
         }
         public string GenerateToken(UserModel user)
         {
-            Claim[] claims = [new("userId", user.UserID.ToString())];
+            Claim[] claims = [new("userId", user.UserID.ToString()), new("roleId",user.RoleName)];
 
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey)),

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WebAPI.Domain.Entities;
 
 namespace WebAPI.Infrastructures.Persistence
@@ -12,5 +13,6 @@ namespace WebAPI.Infrastructures.Persistence
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles {  get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebAPI.Domain.Entities
@@ -24,5 +25,8 @@ namespace WebAPI.Domain.Entities
 
         [Column("RefreshTokenExpireTime")]
         public DateTime RefreshTokenExpireTime { get; set; }
+
+        [Column("RoleID")]
+        public int RoleID { get; set; }
     }
 }

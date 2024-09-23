@@ -29,6 +29,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getAllBooks")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -38,6 +39,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getBookById")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -47,6 +49,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getBookByISBN")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -56,6 +59,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("addNewBook")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -66,6 +70,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("updateBook")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -76,6 +81,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpDelete("deleteBook")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -85,6 +91,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("updateImage")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -94,6 +101,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("issueBook")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -103,6 +111,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("returnBook")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

@@ -27,7 +27,9 @@ namespace WebAPI.API.Controllers
             this.updateAuthorService = updateAuthorService;
         }
 
+        
         [HttpGet("getAllAuthors")]
+        [Authorize(Policy = "UserOnly")] //Доступ для всех ролей, т.к. добавлена иерархия ролей в RoleHierarchyHandler
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -37,6 +39,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getAuthorById")]
+        [Authorize(Policy = "UserOnly")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -46,6 +49,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("addNewAuthor")]
+        [Authorize(Policy = "LibrarianOnly")] //Доступ для RoleName = Librarian и выше
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -56,6 +60,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("updateAuthor")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -66,6 +71,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpDelete("deleteAuthor")]
+        [Authorize(Policy = "LibrarianOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -75,6 +81,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getAllBooksByAuthor")]
+        [Authorize(Policy = "UserOnly")] 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

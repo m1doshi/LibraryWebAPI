@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.Interfaces.Services.Users;
 using WebAPI.Application.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebAPI.API.Controllers
 {
@@ -24,6 +25,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("registration")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -42,6 +44,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("login")]
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -59,6 +62,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpPost("refresh-token")]
+        [Authorize(Policy = "AdminOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
