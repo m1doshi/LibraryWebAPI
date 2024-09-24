@@ -1,12 +1,122 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\books\\updatebookusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\books\\updatebookusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\persistence\\refreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\persistence\\refreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\interfaces\\irefreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\interfaces\\irefreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\interfaces\\services\\books\\iupdatebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\interfaces\\services\\books\\iupdatebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\repositories\\authorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\repositories\\authorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IRefreshProvider.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
+              "RelativeToolTip": "WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T08:01:22.754Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RefreshProvider.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
+              "RelativeToolTip": "WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T08:01:17.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UpdateBookUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
+              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T07:56:24.165Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUpdateBookService.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
+              "RelativeToolTip": "WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T07:56:15.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthorRepository.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
+              "RelativeToolTip": "WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T07:54:33.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Program.cs",
+              "RelativeDocumentMoniker": "WebAPI\\API\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Program.cs",
+              "RelativeToolTip": "WebAPI\\API\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T07:53:07.668Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

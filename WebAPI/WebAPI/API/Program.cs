@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebAPI.API.Extensions;
 using WebAPI.Application.DTOs;
+using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.Interfaces.Services.Authors;
 using WebAPI.Application.Interfaces.Services.Book;
 using WebAPI.Application.Interfaces.Services.Users;
@@ -13,8 +14,11 @@ using WebAPI.Application.UseCases.Authors;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.Application.UseCases.Users;
 using WebAPI.Domain.Entities;
+using WebAPI.Infrastructure.Interfaces;
+using WebAPI.Infrastructure.Persistence;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Infrastructures.Persistence;
+using WebAPI.Infrastructures.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -25,6 +29,9 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(J
 builder.Services.AddApiAuthentication(builder.Services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
 builder.Services.AddSingleton<IAuthorizationHandler, RoleHierarchyHandler>();
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseConfig")));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IAddNewBookService, AddNewBookUseCase>();
 builder.Services.AddScoped<IBookShareService, BookShareUseCase>();
 builder.Services.AddScoped<IDeleteBookService, DeleteBookUseCase>();
@@ -41,6 +48,7 @@ builder.Services.AddScoped<IRegisterService, RegisterUseCase>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IRefreshProvider, RefreshProvider>();
 var app = builder.Build();
 app.UseExceptionHandlerMiddleware();
 if (app.Environment.IsDevelopment())
