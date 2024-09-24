@@ -39,7 +39,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getAuthorById")]
-        [Authorize(Policy = "UserOnly")] 
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

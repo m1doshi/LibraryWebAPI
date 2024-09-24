@@ -3,28 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\exceptionhandler\\exceptionhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\exceptionhandler\\exceptionhandlermiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\controllers\\authorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\books\\updatebookusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\books\\updatebookusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\dtos\\registeruserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\dtos\\registeruserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\persistence\\refreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\persistence\\refreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\users\\updateuserusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\users\\updateuserusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\interfaces\\irefreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\interfaces\\irefreshprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\users\\updatetokensusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\users\\updatetokensusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\interfaces\\services\\books\\iupdatebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\interfaces\\services\\books\\iupdatebookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\users\\registerusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\users\\registerusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\infrastructure\\repositories\\authorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\infrastructure\\repositories\\authorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\application\\usecases\\users\\loginusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\application\\usecases\\users\\loginusecase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +46,123 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IRefreshProvider.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
-              "RelativeToolTip": "WebAPI\\Infrastructure\\Interfaces\\IRefreshProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ExceptionHandlerMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\ExceptionHandler\\ExceptionHandlerMiddleware.cs",
+              "RelativeDocumentMoniker": "WebAPI\\API\\ExceptionHandler\\ExceptionHandlerMiddleware.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\ExceptionHandler\\ExceptionHandlerMiddleware.cs",
+              "RelativeToolTip": "WebAPI\\API\\ExceptionHandler\\ExceptionHandlerMiddleware.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T08:01:22.754Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RefreshProvider.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
-              "RelativeToolTip": "WebAPI\\Infrastructure\\Persistence\\RefreshProvider.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T08:01:17.848Z",
+              "WhenOpened": "2024-09-24T11:57:27.759Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UpdateBookUseCase.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
-              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Books\\UpdateBookUseCase.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\API\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\UserController.cs",
+              "RelativeToolTip": "WebAPI\\API\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T07:56:24.165Z",
+              "WhenOpened": "2024-09-24T11:57:22.37Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IUpdateBookService.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
-              "RelativeToolTip": "WebAPI\\Application\\Interfaces\\Services\\Books\\IUpdateBookService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABBAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "AuthorController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\AuthorController.cs",
+              "RelativeDocumentMoniker": "WebAPI\\API\\Controllers\\AuthorController.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\AuthorController.cs",
+              "RelativeToolTip": "WebAPI\\API\\Controllers\\AuthorController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T07:56:15.415Z",
+              "WhenOpened": "2024-09-24T11:57:18.156Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthorRepository.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
-              "RelativeDocumentMoniker": "WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
-              "RelativeToolTip": "WebAPI\\Infrastructure\\Repositories\\AuthorRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T07:54:33.802Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Program.cs",
               "RelativeDocumentMoniker": "WebAPI\\API\\Program.cs",
               "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Program.cs",
               "RelativeToolTip": "WebAPI\\API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T07:53:07.668Z",
+              "WhenOpened": "2024-09-24T11:57:13.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegisterUserRequest.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\DTOs\\RegisterUserRequest.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\DTOs\\RegisterUserRequest.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\DTOs\\RegisterUserRequest.cs",
+              "RelativeToolTip": "WebAPI\\Application\\DTOs\\RegisterUserRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T11:57:10.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UpdateUserUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\UpdateUserUseCase.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Users\\UpdateUserUseCase.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\UpdateUserUseCase.cs",
+              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Users\\UpdateUserUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T11:57:05.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UpdateTokensUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\UpdateTokensUseCase.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Users\\UpdateTokensUseCase.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\UpdateTokensUseCase.cs",
+              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Users\\UpdateTokensUseCase.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T11:57:03.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "RegisterUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\RegisterUseCase.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Users\\RegisterUseCase.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\RegisterUseCase.cs",
+              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Users\\RegisterUseCase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T11:57:01.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginUseCase.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\LoginUseCase.cs",
+              "RelativeDocumentMoniker": "WebAPI\\Application\\UseCases\\Users\\LoginUseCase.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\Application\\UseCases\\Users\\LoginUseCase.cs",
+              "RelativeToolTip": "WebAPI\\Application\\UseCases\\Users\\LoginUseCase.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-24T11:56:59.734Z",
               "EditorCaption": ""
             }
           ]

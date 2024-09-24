@@ -28,7 +28,7 @@ namespace WebAPI.API.Controllers
             this.updateTokensService = updateTokensService;
             this.updateUserService = updateUserService;
         }
-
+        
         [HttpPost("registration")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

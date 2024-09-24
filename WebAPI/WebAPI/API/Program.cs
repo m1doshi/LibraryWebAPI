@@ -45,6 +45,8 @@ builder.Services.AddScoped<IGetAuthorsService, GetAuthorsUseCase>();
 builder.Services.AddScoped<IUpdateAuthorService, UpdateAuthorUseCase>();
 builder.Services.AddScoped<ILoginService, LoginUseCase>();
 builder.Services.AddScoped<IRegisterService, RegisterUseCase>();
+builder.Services.AddScoped<IUpdateTokensService, UpdateTokensUseCase>();
+builder.Services.AddScoped<IUpdateUserService, UpdateUserUseCase>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
