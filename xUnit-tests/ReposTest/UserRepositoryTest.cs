@@ -74,16 +74,18 @@ namespace xUnit_tests.ReposTest
                 PasswordHash = "test1",
                 Email = "test1",
                 RefreshToken = "qwerty",
-                RefreshTokenExpireTime = DateTime.UtcNow
+                RefreshTokenExpireTime = DateTime.UtcNow,
+                RoleID = 2
             };
             context.Users.Add(newUser);
             await context.SaveChangesAsync();
-            var updatedUser = new UserModel { UserID = newUser.UserID, RefreshToken = "newQwerty",
+            var updatedUser = new UserModel { UserID = newUser.UserID, RoleID = 3, RefreshToken = "newQwerty",
                 RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7) };
             await repository.UpdateUser(updatedUser);
             await context.SaveChangesAsync();
             var user = await context.Users.FindAsync(1);
             Assert.Equal("newQwerty", user.RefreshToken);
+            Assert.Equal(3, user.RoleID);
         }
 
         [Fact]
