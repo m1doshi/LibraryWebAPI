@@ -21,12 +21,12 @@ namespace WebAPI.Domain.Entities
         public string Email { get; set; }
 
         [Column("RefreshToken")]
-        public string RefreshToken { get; set; }
+        public string? RefreshToken { get; set; }
 
         [Column("RefreshTokenExpireTime")]
         public DateTime RefreshTokenExpireTime { get; set; }
 
         [Column("RoleID")]
-        public int RoleID { get; set; }
+        public int RoleID { get; set; } = 2;
     }
 }

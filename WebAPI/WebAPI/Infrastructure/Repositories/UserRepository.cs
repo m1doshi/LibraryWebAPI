@@ -37,6 +37,7 @@ namespace WebAPI.Infrastructures.Repositories
                 UserID = user.UserID,
                 UserName = user.UserName,
                 Email = user.Email,
+                PasswordHash = user.PasswordHash,
                 RefreshToken = user.RefreshToken,
                 RefreshTokenExpireTime = user.RefreshTokenExpireTime
             };
