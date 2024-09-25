@@ -1,21 +1,24 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Authors;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Application.UseCases.Authors
 {
-    public class UpdateAuthorUseCase : IUpdateAuthorService
+    public class UpdateAuthorUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public UpdateAuthorUseCase(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> UpdateAuthor(int authorId, UpdateAuthorRequest data)
+        public async Task<bool> UpdateAuthor(int authorId, UpdateAuthorRequest data)
         {
-            await unitOfWork.Authors.UpdateAuthor(authorId, data);
-            return await unitOfWork.SaveChangesAsync();
+            var result = await unitOfWork.Authors.UpdateAuthor(authorId, data);
+            if (result == false)
+                throw new EntityNotFoundException("Author", authorId);
+            return result;
         }
     }
 }

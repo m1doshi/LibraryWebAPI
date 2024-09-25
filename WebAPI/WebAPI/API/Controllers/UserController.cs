@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Users;
 using WebAPI.Application.Exceptions;
 using Microsoft.AspNetCore.Authorization;
+using WebAPI.Application.UseCases.Users;
+using FluentValidation;
+using WebAPI.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebAPI.API.Controllers
 {
@@ -13,15 +16,15 @@ namespace WebAPI.API.Controllers
     [Route("userController")]
     public class UserController : ControllerBase
     {
-        private readonly ILoginService loginService;
-        private readonly IRegisterService registerService;
-        private readonly IUpdateTokensService updateTokensService;
-        private readonly IUpdateUserService updateUserService;
+        private readonly LoginUseCase loginService;
+        private readonly RegisterUseCase registerService;
+        private readonly UpdateTokensUseCase updateTokensService;
+        private readonly UpdateUserUseCase updateUserService;
 
-        public UserController(ILoginService loginService, 
-            IRegisterService registerService, 
-            IUpdateTokensService updateTokensService, 
-            IUpdateUserService updateUserService)
+        public UserController(LoginUseCase loginService,
+            RegisterUseCase registerService,
+            UpdateTokensUseCase updateTokensService,
+            UpdateUserUseCase updateUserService)
         {
             this.registerService = registerService;
             this.loginService = loginService;
@@ -33,16 +36,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Register(RegisterUserRequest userRequest)
+        public async Task<ActionResult> Register([FromBody] RegisterUserRequest userRequest, [FromServices] IValidator<RegisterUserRequest> validator)
         {
-            if (!TryValidateModel(userRequest))
-            {
-                var validationErrors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                throw new ValidationException("Validation failed", validationErrors);
-            }
+            var validationResult = await validator.ValidateAsync(userRequest);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             var result = await registerService.Register(userRequest.UserName, userRequest.Email, userRequest.Password);
             return Ok(result);
         }
@@ -51,16 +48,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> Login(LoginUserRequest userRequest)
+        public async Task<ActionResult> Login([FromBody] LoginUserRequest userRequest, [FromServices] IValidator<LoginUserRequest> validator)
         {
-            if (!TryValidateModel(userRequest))
-            {
-                var validationErrors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                throw new ValidationException("Validation failed", validationErrors);
-            }
+            var validationResult = await validator.ValidateAsync(userRequest);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await loginService.Login(userRequest.Email, userRequest.Password));
         }
 
@@ -69,8 +60,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateTokens(RefreshTokenRequest tokenRequest)
+        public async Task<ActionResult> UpdateTokens([FromBody] RefreshTokenRequest tokenRequest, [FromServices] IValidator<RefreshTokenRequest> validator)
         {
+            var validationResult = await validator.ValidateAsync(tokenRequest);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await updateTokensService.UpdateTokens(tokenRequest));
         }
 
@@ -79,8 +72,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateUser(UserModel updatedUser)
+        public async Task<ActionResult> UpdateUser([FromBody] UserModel updatedUser, [FromServices] IValidator<UserModel> validator)
         {
+            var validationResult = await validator.ValidateAsync(updatedUser);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await updateUserService.UpdateUser(updatedUser));
         }
 

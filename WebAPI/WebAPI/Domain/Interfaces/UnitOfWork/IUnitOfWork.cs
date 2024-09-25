@@ -1,6 +1,6 @@
-﻿using WebAPI.Application.Interfaces.Repositories;
+﻿using WebAPI.Domain.Interfaces.Repositories;
 
-namespace WebAPI.Application.Interfaces.UnitOfWork
+namespace WebAPI.Domain.Interfaces.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

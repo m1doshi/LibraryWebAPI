@@ -1,6 +1,6 @@
 ﻿using WebAPI.Application.DTOs;
 
-namespace WebAPI.Application.Interfaces.Repositories
+namespace WebAPI.Domain.Interfaces.Repositories
 {
     public interface IAuthorRepository
     {

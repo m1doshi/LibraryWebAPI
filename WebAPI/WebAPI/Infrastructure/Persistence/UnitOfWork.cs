@@ -1,5 +1,5 @@
-﻿using WebAPI.Application.Interfaces.Repositories;
-using WebAPI.Application.Interfaces.UnitOfWork;
+﻿using WebAPI.Domain.Interfaces.Repositories;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructure.Exceptions;
 
 namespace WebAPI.Infrastructures.Persistence

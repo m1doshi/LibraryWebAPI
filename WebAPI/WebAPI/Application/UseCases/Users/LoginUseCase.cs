@@ -1,13 +1,13 @@
 ﻿using System.Drawing.Text;
-using WebAPI.Application.Interfaces.Services.Users;
-using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Infrastructure.Interfaces;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Application.DTOs;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 
 namespace WebAPI.Application.UseCases.Users
 {
-    public class LoginUseCase:ILoginService
+    public class LoginUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IPasswordHasher passwordHasher;
@@ -26,6 +26,8 @@ namespace WebAPI.Application.UseCases.Users
         public async Task<AuthenticationResponce> Login(string email, string password)
         {
             var user = await unitOfWork.Users.GetUserByEmail(email);
+            if (user == null)
+                throw new EntityNotFoundException("User", email);
             var result = passwordHasher.Verify(password, user.PasswordHash);
             if (result == false) throw new Exception("Failed to login");
             var token = jwtProvider.GenerateToken(user);

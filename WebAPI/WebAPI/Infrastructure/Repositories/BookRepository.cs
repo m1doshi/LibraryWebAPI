@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebAPI.Infrastructures.Persistence;
-using WebAPI.Application.Interfaces.Repositories;
 using WebAPI.Application.DTOs;
 using WebAPI.Domain.Entities;
 using WebAPI.Domain.Exceptions;
 using System.Net;
 using System.Reflection.Metadata;
+using WebAPI.Domain.Interfaces.Repositories;
 
 namespace WebAPI.Infrastructures.Repositories
 {
@@ -36,9 +36,7 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<BookModel> GetBookById(int bookId)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if (book == null)
-                throw new EntityNotFoundException("Book", bookId);
-            return new BookModel
+            return book == null ? null : new BookModel
             {
                 BookID = book.BookID,
                 ISBN = book.ISBN,
@@ -53,9 +51,7 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<BookModel> GetBookByISBN(string isbn)
         {
             var book = dbContext.Books.Where(b=>b.ISBN == isbn).FirstOrDefault();
-            if (book == null)
-                throw new EntityNotFoundException("Book", isbn);
-            return new BookModel
+            return book == null ? null : new BookModel
             {
                 BookID = book.BookID,
                 ISBN = book.ISBN,
@@ -83,17 +79,13 @@ namespace WebAPI.Infrastructures.Repositories
         public async Task<bool> DeleteBook(int bookId)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if (book == null)
-                throw new EntityNotFoundException("Book", bookId);
-            dbContext.Remove(book);
-            return true;
+            var result = dbContext.Books.Remove(book);
+            return result != null;
         }
 
         public async Task<bool> UpdateBook(int bookId, UpdateBookRequest data)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if (book == null)
-                throw new EntityNotFoundException("Book", bookId);
             book.ISBN = data.ISBN;
             book.BookTitle = data.BookTitle;
             book.Genre = data.Genre;
@@ -103,13 +95,11 @@ namespace WebAPI.Infrastructures.Repositories
             book.ReturnTime = data.ReturnTime;
             book.IsAvailable = data.IsAvailable;
             book.UserID = data.UserID;
-            return true;
+            return book.ISBN != null;
         }
         public async Task<bool> UpdateImage(int bookId, IFormFile image)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if (book == null)
-                throw new EntityNotFoundException("Book", bookId);
             using (var memoryStream = new MemoryStream())
             {
                 await image.CopyToAsync(memoryStream);

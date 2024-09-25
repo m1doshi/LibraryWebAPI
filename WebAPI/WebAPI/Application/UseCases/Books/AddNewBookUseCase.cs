@@ -1,11 +1,10 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Book;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 
 
 namespace WebAPI.Application.UseCases.Books
 {
-    public class AddNewBookUseCase : IAddNewBookService
+    public class AddNewBookUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public AddNewBookUseCase(IUnitOfWork unitOfWork)

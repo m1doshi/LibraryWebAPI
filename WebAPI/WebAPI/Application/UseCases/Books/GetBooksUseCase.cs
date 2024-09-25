@@ -1,10 +1,12 @@
-﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Book;
-using WebAPI.Application.Interfaces.UnitOfWork;
+﻿using System.Net;
+using WebAPI.Application.DTOs;
+using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 
 namespace WebAPI.Application.UseCases.Books
 {
-    public class GetBooksUseCase : IGetBooksService
+    public class GetBooksUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public GetBooksUseCase(IUnitOfWork unitOfWork)
@@ -19,11 +21,17 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async Task<BookModel> GetBookById(int bookId)
         {
-            return await unitOfWork.Books.GetBookById(bookId);
+            var result = await unitOfWork.Books.GetBookById(bookId);
+            if (result == null)
+                throw new EntityNotFoundException("Book", bookId);
+            return result;
         }
         public async Task<BookModel> GetBookByISBN(string isbn)
         {
-            return await unitOfWork.Books.GetBookByISBN(isbn);
+            var result = await unitOfWork.Books.GetBookByISBN(isbn);
+            if (result == null)
+                throw new EntityNotFoundException("Book", isbn);
+            return result;
         }
     }
 }

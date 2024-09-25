@@ -1,11 +1,10 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Users;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Interfaces;
 
 namespace WebAPI.Application.UseCases.Users
 {
-    public class RegisterUseCase:IRegisterService
+    public class RegisterUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IPasswordHasher passwordHasher;

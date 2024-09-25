@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Book;
+using WebAPI.Application.UseCases.Books;
+using WebAPI.Application.Validators;
+using WebAPI.Domain.Entities;
 
 namespace WebAPI.API.Controllers
 {
@@ -10,15 +13,15 @@ namespace WebAPI.API.Controllers
     [Route("bookController")]
     public class BookController : ControllerBase
     {
-        private readonly IAddNewBookService addNewBookService;
-        private readonly IBookShareService bookShareService;
-        private readonly IDeleteBookService deleteBookService;
-        private readonly IGetBooksService getBooksService;
-        private readonly IUpdateBookService updateBookService;
-        private readonly IUpdateImageService updateImageService;
-        public BookController(IAddNewBookService addNewBookService, IBookShareService bookShareService,
-            IDeleteBookService deleteBookService, IGetBooksService getBooksService, IUpdateBookService updateBookService,
-            IUpdateImageService updateImageService)
+        private readonly AddNewBookUseCase addNewBookService;
+        private readonly BookShareUseCase bookShareService;
+        private readonly DeleteBookUseCase deleteBookService;
+        private readonly GetBooksUseCase getBooksService;
+        private readonly UpdateBookUseCase updateBookService;
+        private readonly UpdateImageUseCase updateImageService;
+        public BookController(AddNewBookUseCase addNewBookService, BookShareUseCase bookShareService,
+            DeleteBookUseCase deleteBookService, GetBooksUseCase getBooksService, UpdateBookUseCase updateBookService,
+            UpdateImageUseCase updateImageService)
         {
            this.addNewBookService = addNewBookService;
            this.bookShareService = bookShareService;
@@ -63,9 +66,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> AddNewBook(BookModel book)
+        public async Task<ActionResult> AddNewBook([FromBody] BookModel book, [FromServices] IValidator<BookModel> validator)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var validationResult = await validator.ValidateAsync(book);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await addNewBookService.AddNewBook(book));
         }
 
@@ -74,9 +78,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateBook(int bookId, UpdateBookRequest data)
+        public async Task<ActionResult> UpdateBook(int bookId, [FromBody] UpdateBookRequest data, [FromServices] IValidator<UpdateBookRequest> validator)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var validationResult = await validator.ValidateAsync(data);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await updateBookService.UpdateBook(bookId, data));
         }
 

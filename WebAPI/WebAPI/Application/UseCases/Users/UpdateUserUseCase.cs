@@ -1,10 +1,9 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces;
-using WebAPI.Application.Interfaces.Services.Users;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 namespace WebAPI.Application.UseCases.Users
 {
-    public class UpdateUserUseCase : IUpdateUserService
+    public class UpdateUserUseCase
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -15,6 +14,11 @@ namespace WebAPI.Application.UseCases.Users
 
         public async Task<int> UpdateUser(UserModel updatedUser)
         {
+            var user = await unitOfWork.Users.GetUserById(updatedUser.UserID);
+            if (user == null)
+            {
+                throw new EntityNotFoundException("User", updatedUser.UserID);
+            }
             await unitOfWork.Users.UpdateUser(updatedUser);
             return await unitOfWork.SaveChangesAsync();
         }

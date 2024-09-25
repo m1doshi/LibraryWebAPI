@@ -1,13 +1,13 @@
 ﻿using System.Runtime.CompilerServices;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Repositories;
-using WebAPI.Application.Interfaces.Services.Authors;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Application.UseCases.Authors
 {
-    public class GetAuthorsUseCase : IGetAuthorsService
+    public class GetAuthorsUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public GetAuthorsUseCase(IUnitOfWork unitOfWork)
@@ -22,7 +22,10 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async Task<AuthorModel> GetAuthorById(int authorId)
         {
-            return await unitOfWork.Authors.GetAuthorById(authorId);
+            var result = await unitOfWork.Authors.GetAuthorById(authorId);
+            if (result == null)
+                throw new EntityNotFoundException("Author", authorId);
+            return result;
         }
     }
 }

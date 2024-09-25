@@ -1,11 +1,12 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Authors;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Application.UseCases.Authors
 {
-    public class GetAllBooksByAuthorUseCase : IGetAllBooksByAuthorService
+    public class GetAllBooksByAuthorUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public GetAllBooksByAuthorUseCase(IUnitOfWork unitOfWork)
@@ -14,7 +15,10 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
-            return await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
+            var result = await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
+            if (result.Count() == 0)
+                throw new EntityNotFoundException("Books by author", authorId);
+            return result;
         }
     }
 }

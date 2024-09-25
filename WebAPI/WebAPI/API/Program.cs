@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebAPI.API.Extensions;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Repositories;
-using WebAPI.Application.Interfaces.Services.Authors;
-using WebAPI.Application.Interfaces.Services.Book;
-using WebAPI.Application.Interfaces.Services.Users;
-using WebAPI.Application.Interfaces.UnitOfWork;
 using WebAPI.Application.UseCases.Authors;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.Application.UseCases.Users;
+using WebAPI.Application.Validators;
 using WebAPI.Domain.Entities;
+using WebAPI.Domain.Interfaces.Repositories;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructure.Interfaces;
 using WebAPI.Infrastructure.Persistence;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Infrastructures.Persistence;
 using WebAPI.Infrastructures.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -32,21 +32,56 @@ builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(build
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-builder.Services.AddScoped<IAddNewBookService, AddNewBookUseCase>();
-builder.Services.AddScoped<IBookShareService, BookShareUseCase>();
-builder.Services.AddScoped<IDeleteBookService, DeleteBookUseCase>();
-builder.Services.AddScoped<IGetBooksService, GetBooksUseCase>();
-builder.Services.AddScoped<IUpdateBookService, UpdateBookUseCase>();
-builder.Services.AddScoped<IUpdateImageService, UpdateImageUseCase>();
-builder.Services.AddScoped<IAddNewAuthorService, AddNewAuthorUseCase>();
-builder.Services.AddScoped<IDeleteAuthorService, DeleteAuthorUseCase>();
-builder.Services.AddScoped<IGetAllBooksByAuthorService, GetAllBooksByAuthorUseCase>();
-builder.Services.AddScoped<IGetAuthorsService, GetAuthorsUseCase>();
-builder.Services.AddScoped<IUpdateAuthorService, UpdateAuthorUseCase>();
-builder.Services.AddScoped<ILoginService, LoginUseCase>();
-builder.Services.AddScoped<IRegisterService, RegisterUseCase>();
-builder.Services.AddScoped<IUpdateTokensService, UpdateTokensUseCase>();
-builder.Services.AddScoped<IUpdateUserService, UpdateUserUseCase>();
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<AuthorModelValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<BookModelValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<RoleModelValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<UpdateAuthorRequestValidator>();
+    });
+builder.Services.AddControllers()
+    .AddFluentValidation(config =>
+    {
+        config.RegisterValidatorsFromAssemblyContaining<UpdateBookRequestValidator>();
+    });
+builder.Services.AddScoped<AddNewBookUseCase>();
+builder.Services.AddScoped<BookShareUseCase>();
+builder.Services.AddScoped<DeleteBookUseCase>();
+builder.Services.AddScoped<GetBooksUseCase>();
+builder.Services.AddScoped<UpdateBookUseCase>();
+builder.Services.AddScoped<UpdateImageUseCase>();
+builder.Services.AddScoped<AddNewAuthorUseCase>();
+builder.Services.AddScoped<DeleteAuthorUseCase>();
+builder.Services.AddScoped<GetAllBooksByAuthorUseCase>();
+builder.Services.AddScoped<GetAuthorsUseCase>();
+builder.Services.AddScoped<UpdateAuthorUseCase>();
+builder.Services.AddScoped<LoginUseCase>();
+builder.Services.AddScoped<RegisterUseCase>();
+builder.Services.AddScoped<UpdateTokensUseCase>();
+builder.Services.AddScoped<UpdateUserUseCase>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();

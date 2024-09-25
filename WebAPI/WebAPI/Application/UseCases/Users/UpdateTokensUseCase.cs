@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Users;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructure.Interfaces;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Infrastructures.Persistence;
 namespace WebAPI.Application.UseCases.Users
 {
-    public class UpdateTokensUseCase : IUpdateTokensService
+    public class UpdateTokensUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IJwtProvider jwtProvider;

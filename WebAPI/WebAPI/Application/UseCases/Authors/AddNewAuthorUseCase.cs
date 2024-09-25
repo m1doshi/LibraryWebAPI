@@ -1,11 +1,10 @@
 ﻿using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Authors;
-using WebAPI.Application.Interfaces.UnitOfWork;
+using WebAPI.Domain.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Persistence;
 
 namespace WebAPI.Application.UseCases.Authors
 {
-    public class AddNewAuthorUseCase : IAddNewAuthorService
+    public class AddNewAuthorUseCase
     {
         private readonly IUnitOfWork unitOfWork;
         public AddNewAuthorUseCase(IUnitOfWork unitOfWork)

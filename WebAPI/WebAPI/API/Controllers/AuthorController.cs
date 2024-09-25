@@ -1,7 +1,12 @@
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using WebAPI.Application.DTOs;
-using WebAPI.Application.Interfaces.Services.Authors;
+using WebAPI.Application.UseCases.Authors;
+using WebAPI.Application.Validators;
+using WebAPI.Domain.Entities;
+using WebAPI.Application.Exceptions;
 
 
 namespace WebAPI.API.Controllers
@@ -10,15 +15,15 @@ namespace WebAPI.API.Controllers
     [Route("authorController")]
     public class AuthorController : ControllerBase
     {
-        private readonly IAddNewAuthorService addNewAuthorService;
-        private readonly IDeleteAuthorService deleteAuthorService;
-        private readonly IGetAllBooksByAuthorService getAllBooksByAuthorService;
-        private readonly IGetAuthorsService getAuthorsService;
-        private readonly IUpdateAuthorService updateAuthorService;
+        private readonly AddNewAuthorUseCase addNewAuthorService;
+        private readonly DeleteAuthorUseCase deleteAuthorService;
+        private readonly GetAllBooksByAuthorUseCase getAllBooksByAuthorService;
+        private readonly GetAuthorsUseCase getAuthorsService;
+        private readonly UpdateAuthorUseCase updateAuthorService;
 
-        public AuthorController(IAddNewAuthorService addNewAuthorService, IDeleteAuthorService deleteAuthorService,
-            IGetAllBooksByAuthorService getAllBooksByAuthorService, IGetAuthorsService getAuthorsService,
-            IUpdateAuthorService updateAuthorService)
+        public AuthorController(AddNewAuthorUseCase addNewAuthorService, DeleteAuthorUseCase deleteAuthorService,
+            GetAllBooksByAuthorUseCase getAllBooksByAuthorService, GetAuthorsUseCase getAuthorsService,
+            UpdateAuthorUseCase updateAuthorService)
         {
             this.addNewAuthorService = addNewAuthorService;
             this.deleteAuthorService = deleteAuthorService;
@@ -53,9 +58,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> AddNewAuthor(AuthorModel author)
+        public async Task<ActionResult> AddNewAuthor([FromBody] AuthorModel author, [FromServices] IValidator<AuthorModel> validator)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var validationResult = await validator.ValidateAsync(author);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await addNewAuthorService.AddNewAuthor(author));
         }
 
@@ -64,9 +70,10 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> UpdateAuthor(int authorId, UpdateAuthorRequest data)
+        public async Task<ActionResult> UpdateAuthor(int authorId, [FromBody] UpdateAuthorRequest data, [FromServices] IValidator<UpdateAuthorRequest> validator)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            var validationResult = await validator.ValidateAsync(data);
+            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
             return Ok(await updateAuthorService.UpdateAuthor(authorId, data));
         }
 
@@ -81,7 +88,7 @@ namespace WebAPI.API.Controllers
         }
 
         [HttpGet("getAllBooksByAuthor")]
-        [Authorize(Policy = "UserOnly")] 
+        [Authorize(Policy = "UserOnly")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
