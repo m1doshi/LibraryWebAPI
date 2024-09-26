@@ -50,7 +50,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAuthorById(int authorId)
         {
-            return Ok(await getAuthorsService.GetAuthorById(authorId));
+             return Ok(await getAuthorsService.GetAuthorById(authorId));
         }
 
         [HttpPost("addNewAuthor")]

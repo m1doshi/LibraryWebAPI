@@ -13,7 +13,7 @@ namespace WebAPI.Application.UseCases.Authors
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
+        public async virtual Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
             var result = await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
             if (result.Count() == 0)

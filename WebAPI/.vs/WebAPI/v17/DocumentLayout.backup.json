@@ -3,8 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|c:\\users\\user\\desktop\\modsen tz\\webapi\\webapi\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C337584B-3221-4006-B228-7BE17DEE5A63}|WebAPI\\WebAPI.csproj|solutionrelative:webapi\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CD402D4C-CFB3-4BAF-8EE9-05CEBF5E7FEC}|..\\xUnit-tests\\xUnit-tests.csproj|c:\\users\\user\\desktop\\modsen tz\\xunit-tests\\apitests\\controllers\\authorcontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +18,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "WebAPI\\API\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "WebAPI\\API\\Controllers\\UserController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwE0AAABWAAAAAAAAAA==",
+              "Title": "AuthorControllerTest.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ApiTests\\Controllers\\AuthorControllerTest.cs",
+              "RelativeDocumentMoniker": "..\\xUnit-tests\\ApiTests\\Controllers\\AuthorControllerTest.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\modsen TZ\\xUnit-tests\\ApiTests\\Controllers\\AuthorControllerTest.cs",
+              "RelativeToolTip": "..\\xUnit-tests\\ApiTests\\Controllers\\AuthorControllerTest.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwEAAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T20:17:04.764Z",
+              "WhenOpened": "2024-09-26T09:24:36.011Z",
               "EditorCaption": ""
             }
           ]

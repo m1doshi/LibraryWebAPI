@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.71" />
@@ -25,6 +27,14 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ApplicationTests\UseCases\" />
+    <Folder Include="ApplicationTests\Validators\" />
+    <Folder Include="DomainTests\Entities\" />
+    <Folder Include="InfrastructureTests\Repositories\" />
+    <Folder Include="InfrastructureTests\Persistence\" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ namespace WebAPI.Application.UseCases.Authors
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> DeleteAuthor(int authorId)
+        public async virtual Task<int> DeleteAuthor(int authorId)
         {
             var result = await unitOfWork.Authors.DeleteAuthor(authorId);
             if (result == false)

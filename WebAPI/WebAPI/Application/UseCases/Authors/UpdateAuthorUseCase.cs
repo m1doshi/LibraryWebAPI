@@ -13,7 +13,7 @@ namespace WebAPI.Application.UseCases.Authors
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<bool> UpdateAuthor(int authorId, UpdateAuthorRequest data)
+        public async virtual Task<bool> UpdateAuthor(int authorId, UpdateAuthorRequest data)
         {
             var result = await unitOfWork.Authors.UpdateAuthor(authorId, data);
             if (result == false)

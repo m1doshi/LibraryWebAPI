@@ -11,7 +11,7 @@ namespace WebAPI.Application.UseCases.Authors
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> AddNewAuthor(AuthorModel author)
+        public async virtual Task<int> AddNewAuthor(AuthorModel author)
         {
             await unitOfWork.Authors.AddNewAuthor(author);
             return await unitOfWork.SaveChangesAsync();
