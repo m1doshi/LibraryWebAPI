@@ -4,7 +4,7 @@ using WebAPI.Infrastructures.Repositories;
 using WebAPI.Domain.Entities;
 using WebAPI.Infrastructures.Persistence;
 
-namespace xUnit_tests.ReposTest
+namespace xUnit_tests.InfrastructureTests.Repositories
 {
     public class AuthorRepositoryTest
     {

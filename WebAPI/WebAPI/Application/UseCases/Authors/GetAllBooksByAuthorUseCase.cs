@@ -16,8 +16,6 @@ namespace WebAPI.Application.UseCases.Authors
         public async virtual Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
             var result = await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
-            if (result.Count() == 0)
-                throw new EntityNotFoundException("Books by author", authorId);
             return result;
         }
     }

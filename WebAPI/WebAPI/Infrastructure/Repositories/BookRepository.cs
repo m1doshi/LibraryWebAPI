@@ -6,6 +6,7 @@ using WebAPI.Domain.Exceptions;
 using System.Net;
 using System.Reflection.Metadata;
 using WebAPI.Domain.Interfaces.Repositories;
+using System.Data.Entity;
 
 namespace WebAPI.Infrastructures.Repositories
 {
@@ -35,8 +36,7 @@ namespace WebAPI.Infrastructures.Repositories
         }
         public async Task<BookModel> GetBookById(int bookId)
         {
-            var book = await dbContext.Books.FindAsync(bookId);
-            return book == null ? null : new BookModel
+            return await dbContext.Books.Where(book=>book.BookID == bookId).Select(book => new BookModel
             {
                 BookID = book.BookID,
                 ISBN = book.ISBN,
@@ -46,12 +46,11 @@ namespace WebAPI.Infrastructures.Repositories
                 AuthorID = book.AuthorID,
                 PickUpTime = book.PickUpTime,
                 ReturnTime = book.ReturnTime,
-            };
+            }).FirstOrDefaultAsync();
         }
         public async Task<BookModel> GetBookByISBN(string isbn)
         {
-            var book = dbContext.Books.Where(b=>b.ISBN == isbn).FirstOrDefault();
-            return book == null ? null : new BookModel
+            return await dbContext.Books.Where(book => book.ISBN == isbn).Select(book => new BookModel
             {
                 BookID = book.BookID,
                 ISBN = book.ISBN,
@@ -61,7 +60,7 @@ namespace WebAPI.Infrastructures.Repositories
                 AuthorID = book.AuthorID,
                 PickUpTime = book.PickUpTime,
                 ReturnTime = book.ReturnTime,
-            };
+            }).FirstOrDefaultAsync();
         }
         public async Task<bool> AddNewBook(BookModel book)
         {
@@ -85,7 +84,7 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<bool> UpdateBook(int bookId, UpdateBookRequest data)
         {
-            var book = await dbContext.Books.FindAsync(bookId);
+            var book = await dbContext.Books.Where(b=>b.BookID == bookId).FirstOrDefaultAsync();
             book.ISBN = data.ISBN;
             book.BookTitle = data.BookTitle;
             book.Genre = data.Genre;

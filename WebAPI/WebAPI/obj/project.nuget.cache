@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bPqj0TT9iLk=",
+  "dgSpecHash": "zDMm9hCOI9E=",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,7 @@
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",
-    "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\8.6.3\\fluentvalidation.8.6.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.3\\fluentvalidation.aspnetcore.8.6.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.3\\fluentvalidation.dependencyinjectionextensions.8.6.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

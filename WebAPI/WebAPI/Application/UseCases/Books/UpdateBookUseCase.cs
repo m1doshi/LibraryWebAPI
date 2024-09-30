@@ -12,13 +12,8 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> UpdateBook(int bookId, UpdateBookRequest data)
+        public async virtual Task<int> UpdateBook(int bookId, UpdateBookRequest data)
         {
-            var book = await unitOfWork.Books.GetBookById(bookId);
-            if(book == null)
-            {
-                throw new EntityNotFoundException("Book", bookId);
-            }
             await unitOfWork.Books.UpdateBook(bookId, data);
             return await unitOfWork.SaveChangesAsync();
         }

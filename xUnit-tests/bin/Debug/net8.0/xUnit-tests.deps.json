@@ -457,20 +457,23 @@
           "lib/net6.0/FluentAssertions.dll": {}
         }
       },
-      "FluentValidation/11.10.0": {
+      "FluentValidation/8.6.3": {
+        "dependencies": {
+          "System.ComponentModel.Annotations": "5.0.0"
+        },
         "runtime": {
-          "lib/net8.0/FluentValidation.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.10.0.0"
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.3.0"
           }
         },
         "compile": {
-          "lib/net8.0/FluentValidation.dll": {}
+          "lib/netstandard2.0/FluentValidation.dll": {}
         }
       },
       "FluentValidation.AspNetCore/8.6.3": {
         "dependencies": {
-          "FluentValidation": "11.10.0",
+          "FluentValidation": "8.6.3",
           "FluentValidation.DependencyInjectionExtensions": "8.6.3"
         },
         "runtime": {
@@ -485,7 +488,7 @@
       },
       "FluentValidation.DependencyInjectionExtensions/8.6.3": {
         "dependencies": {
-          "FluentValidation": "11.10.0",
+          "FluentValidation": "8.6.3",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.0"
         },
         "runtime": {
@@ -2487,7 +2490,7 @@
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
           "EntityFramework": "6.5.1",
-          "FluentValidation": "11.10.0",
+          "FluentValidation": "8.6.3",
           "FluentValidation.AspNetCore": "8.6.3",
           "FluentValidation.DependencyInjectionExtensions": "8.6.3",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
@@ -4375,12 +4378,12 @@
       "path": "fluentassertions/6.12.1",
       "hashPath": "fluentassertions.6.12.1.nupkg.sha512"
     },
-    "FluentValidation/11.10.0": {
+    "FluentValidation/8.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-qsJGSJDdZ8qiG+lVJ70PZfJHcEdq8UQZ/tZDXoj78/iHKG6lVKtMJsD11zyyv/IPc7rwqGqnFoFLTNzpo3IPYg==",
-      "path": "fluentvalidation/11.10.0",
-      "hashPath": "fluentvalidation.11.10.0.nupkg.sha512"
+      "sha512": "sha512-UT2dcKiSFz9fNQT7xXlZfk87IJxf6KEjaTaFHGZVmJNPylcFWU/Fp5vBWeILHuRBxnXckM+WDo6kK4YTqGjRXw==",
+      "path": "fluentvalidation/8.6.3",
+      "hashPath": "fluentvalidation.8.6.3.nupkg.sha512"
     },
     "FluentValidation.AspNetCore/8.6.3": {
       "type": "package",

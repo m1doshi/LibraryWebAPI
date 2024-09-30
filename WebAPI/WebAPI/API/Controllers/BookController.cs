@@ -1,11 +1,13 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Runtime.CompilerServices;
 using WebAPI.Application.DTOs;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.Application.Validators;
 using WebAPI.Domain.Entities;
+using WebAPI.Domain.Exceptions;
 
 namespace WebAPI.API.Controllers
 {
@@ -48,7 +50,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetBookById(int bookId)
         {
-            return Ok(await getBooksService.GetBookById(bookId));
+            var result = await getBooksService.GetBookById(bookId);
+            if(result == null)
+            {
+                return BadRequest(new EntityNotFoundException("Book", bookId));
+            }
+            return Ok(result);
         }
 
         [HttpGet("getBookByISBN")]
@@ -58,7 +65,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetBookByISBN(string isbn)
         {
-            return Ok(await getBooksService.GetBookByISBN(isbn));
+            var result = await getBooksService.GetBookByISBN(isbn);
+            if (result == null)
+            {
+                return BadRequest(new EntityNotFoundException("Book", isbn));
+            }
+            return Ok(result);
         }
 
         [HttpPost("addNewBook")]
@@ -92,7 +104,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteBook(int bookId)
         {
-            return Ok(await deleteBookService.DeleteBook(bookId));
+            var result = await deleteBookService.DeleteBook(bookId);
+            if(result == 0)
+            {
+                return BadRequest(new EntityNotFoundException("Book", bookId));
+            }
+            return Ok(result);
         }
 
         [HttpPost("updateImage")]
@@ -102,7 +119,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> UpdateImage(int bookId, IFormFile image)
         {
-            return Ok(await updateImageService.UpdateImage(bookId, image));
+            var result = await updateImageService.UpdateImage(bookId, image);
+            if(result == 0)
+            {
+                return BadRequest(new EntityNotFoundException("Book", bookId));
+            }
+            return Ok(result);
         }
 
         [HttpPost("issueBook")]
@@ -110,9 +132,25 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> IssueBook(int bookId, int userId, DateTime returnDate)
+        public async Task<ActionResult> IssueBook(IssueBookRequest request)
         {
-            return Ok(await bookShareService.IssueBook(bookId, userId, returnDate));
+            try
+            {
+                var result = await bookShareService.IssueBook(request);
+                if(!result)
+                {
+                    return BadRequest("Unable to issue the book.");
+                }
+                return Ok(result);
+            }
+            catch (BusinessRuleViolationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("returnBook")]
@@ -122,7 +160,19 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> ReturnBook(int bookId)
         {
-            return Ok(await bookShareService.ReturnBook(bookId));
+            try
+            {
+                var result = await bookShareService.ReturnBook(bookId);
+                if (!result)
+                {
+                    return BadRequest("Unable to return the book.");
+                }
+                return Ok(result);
+            }
+            catch (BusinessRuleViolationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

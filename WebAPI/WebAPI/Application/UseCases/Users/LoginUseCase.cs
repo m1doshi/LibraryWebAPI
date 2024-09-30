@@ -23,7 +23,7 @@ namespace WebAPI.Application.UseCases.Users
             this.jwtProvider = jwtProvider;
             this.refreshProvider = refreshProvider;
         }
-        public async Task<AuthenticationResponce> Login(string email, string password)
+        public async virtual Task<AuthenticationResponce> Login(string email, string password)
         {
             var user = await unitOfWork.Users.GetUserByEmail(email);
             if (user == null)

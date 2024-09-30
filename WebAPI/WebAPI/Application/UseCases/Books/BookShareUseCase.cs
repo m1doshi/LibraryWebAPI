@@ -12,20 +12,13 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<bool> IssueBook(int bookId, int userId, DateTime returnDate)
+        public async virtual Task<bool> IssueBook(IssueBookRequest request)
         {
-            var book = await unitOfWork.Books.GetBookById(bookId);
-            if (book == null || book.IsAvailable == 0)
-            {
-                throw new BusinessRuleViolationException("The book is unavailable");
-            }
-            var user = await unitOfWork.Users.GetUserById(userId);
-            if (user == null)
-                throw new EntityNotFoundException("User", userId);
+            var book = await unitOfWork.Books.GetBookById(request.BookId);
             var bookModel = new UpdateBookRequest();
             bookModel.PickUpTime = DateTime.Now;
-            bookModel.ReturnTime = returnDate;
-            bookModel.UserID = userId;
+            bookModel.ReturnTime = request.ReturnDate;
+            bookModel.UserID = request.UserId;
             bookModel.IsAvailable = 0;
 
             await unitOfWork.Books.UpdateBook(book.BookID, bookModel);
@@ -33,7 +26,7 @@ namespace WebAPI.Application.UseCases.Books
             return await unitOfWork.SaveChangesAsync() > 0;
         }
 
-        public async Task<bool> ReturnBook(int bookId)
+        public async virtual Task<bool> ReturnBook(int bookId)
         {
             var book = await unitOfWork.Books.GetBookById(bookId);
             if (book == null || book.IsAvailable == 1)

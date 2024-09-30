@@ -19,82 +19,96 @@ using WebAPI.Infrastructures.Persistence;
 using WebAPI.Infrastructures.Repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using System.Configuration;
 
-var builder = WebApplication.CreateBuilder(args);
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
-builder.Services.AddApiAuthentication(builder.Services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
-builder.Services.AddSingleton<IAuthorizationHandler, RoleHierarchyHandler>();
-builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBaseConfig")));
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<AuthorModelValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<BookModelValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<RoleModelValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<UpdateAuthorRequestValidator>();
-    });
-builder.Services.AddControllers()
-    .AddFluentValidation(config =>
-    {
-        config.RegisterValidatorsFromAssemblyContaining<UpdateBookRequestValidator>();
-    });
-builder.Services.AddScoped<AddNewBookUseCase>();
-builder.Services.AddScoped<BookShareUseCase>();
-builder.Services.AddScoped<DeleteBookUseCase>();
-builder.Services.AddScoped<GetBooksUseCase>();
-builder.Services.AddScoped<UpdateBookUseCase>();
-builder.Services.AddScoped<UpdateImageUseCase>();
-builder.Services.AddScoped<AddNewAuthorUseCase>();
-builder.Services.AddScoped<DeleteAuthorUseCase>();
-builder.Services.AddScoped<GetAllBooksByAuthorUseCase>();
-builder.Services.AddScoped<GetAuthorsUseCase>();
-builder.Services.AddScoped<UpdateAuthorUseCase>();
-builder.Services.AddScoped<LoginUseCase>();
-builder.Services.AddScoped<RegisterUseCase>();
-builder.Services.AddScoped<UpdateTokensUseCase>();
-builder.Services.AddScoped<UpdateUserUseCase>();
-builder.Services.AddScoped<IJwtProvider, JwtProvider>();
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IRefreshProvider, RefreshProvider>();
-var app = builder.Build();
-app.UseExceptionHandlerMiddleware();
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        var builder = CreateHostBuilder(args).Build();
+        builder.Run();
+    }
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-app.Run();
+
+public class Startup
+{
+    public Startup(IConfiguration configuration)
+    {
+        Configuration = configuration;
+    }
+    public IConfiguration Configuration { get; }
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
+        services.AddApiAuthentication(services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
+        services.AddSingleton<IAuthorizationHandler, RoleHierarchyHandler>();
+        services.AddDbContext<MyDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DataBaseConfig")));
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
+        services.AddScoped<IAuthorRepository, AuthorRepository>();
+
+        services.AddControllers()
+            .AddFluentValidation(config =>
+            {
+                config.RegisterValidatorsFromAssemblyContaining<AuthorModelValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<BookModelValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<LoginUserRequestValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<RegisterUserRequestValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<RoleModelValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<UpdateAuthorRequestValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<UpdateBookRequestValidator>();
+                config.RegisterValidatorsFromAssemblyContaining<RefreshTokenRequestValidator>();
+            });
+
+        services.AddScoped<AddNewBookUseCase>();
+        services.AddScoped<BookShareUseCase>();
+        services.AddScoped<DeleteBookUseCase>();
+        services.AddScoped<GetBooksUseCase>();
+        services.AddScoped<UpdateBookUseCase>();
+        services.AddScoped<UpdateImageUseCase>();
+        services.AddScoped<AddNewAuthorUseCase>();
+        services.AddScoped<DeleteAuthorUseCase>();
+        services.AddScoped<GetAllBooksByAuthorUseCase>();
+        services.AddScoped<GetAuthorsUseCase>();
+        services.AddScoped<UpdateAuthorUseCase>();
+        services.AddScoped<LoginUseCase>();
+        services.AddScoped<RegisterUseCase>();
+        services.AddScoped<UpdateTokensUseCase>();
+        services.AddScoped<UpdateUserUseCase>();
+        services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddScoped<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IRefreshProvider, RefreshProvider>();
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseExceptionHandlerMiddleware();
+
+        if (env.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        app.UseHttpsRedirection();
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
+
+}

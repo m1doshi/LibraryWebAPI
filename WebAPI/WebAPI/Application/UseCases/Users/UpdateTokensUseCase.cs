@@ -19,7 +19,7 @@ namespace WebAPI.Application.UseCases.Users
             this.refreshProvider = refreshProvider;
         }
 
-        public async Task<AuthenticationResponce> UpdateTokens(RefreshTokenRequest tokenRequest)
+        public async virtual Task<AuthenticationResponce> UpdateTokens(RefreshTokenRequest tokenRequest)
         {
             var user = await unitOfWork.Users.GetUserByRefreshToken(tokenRequest.RefreshToken);
             if (user == null || user.RefreshTokenExpireTime <= DateTime.UtcNow) 

@@ -7,7 +7,7 @@ using WebAPI.Domain.Interfaces.Repositories;
 using WebAPI.Domain.Interfaces.UnitOfWork;
 
 
-namespace xUnit_tests.ServTests
+namespace xUnit_tests.ApplicationTests.UseCases
 {
     public class UserServiceTest
     {
@@ -26,7 +26,7 @@ namespace xUnit_tests.ServTests
             passwordHasher = new Mock<IPasswordHasher>();
             jwtProvider = new Mock<IJwtProvider>();
             refreshProvider = new Mock<IRefreshProvider>();
-            unitOfWork.Setup(u=>u.Users).Returns(userRepository.Object);
+            unitOfWork.Setup(u => u.Users).Returns(userRepository.Object);
             unitOfWork.Setup(u => u.SaveChangesAsync()).ReturnsAsync(1);
             registerUseCase = new RegisterUseCase(unitOfWork.Object, passwordHasher.Object);
             loginUseCase = new LoginUseCase(unitOfWork.Object, passwordHasher.Object, jwtProvider.Object, refreshProvider.Object);
@@ -99,6 +99,8 @@ namespace xUnit_tests.ServTests
             userRepository.Verify(r => r.GetUserByEmail(email), Times.Once());
             passwordHasher.Verify(p => p.Verify(password, hashedPassword), Times.Once());
         }
+
+
 
     }
 }

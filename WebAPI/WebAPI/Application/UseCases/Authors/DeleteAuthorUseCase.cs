@@ -14,9 +14,7 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async virtual Task<int> DeleteAuthor(int authorId)
         {
-            var result = await unitOfWork.Authors.DeleteAuthor(authorId);
-            if (result == false)
-                throw new EntityNotFoundException("Author", authorId);
+            await unitOfWork.Authors.DeleteAuthor(authorId);
             return await unitOfWork.SaveChangesAsync();
         }
     }

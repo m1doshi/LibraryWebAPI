@@ -12,7 +12,7 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> UpdateImage(int bookId, IFormFile image)
+        public async virtual Task<int> UpdateImage(int bookId, IFormFile image)
         {
             var book = unitOfWork.Books.GetBookById(bookId);
             if (book!=null && image != null && image.Length > 0)
@@ -20,7 +20,7 @@ namespace WebAPI.Application.UseCases.Books
                 await unitOfWork.Books.UpdateImage(bookId, image);
                 return await unitOfWork.SaveChangesAsync();
             }
-            throw new EntityNotFoundException("Book", bookId);
+            return 0;
         }
     }
 }

@@ -30,15 +30,14 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<AuthorModel> GetAuthorById(int authorId)
         {
-            var author = await dbContext.Authors.FindAsync(authorId);
-            return author == null ? null : new AuthorModel
+            return await dbContext.Authors.Where(author=>author.AuthorID == authorId).Select(author => new AuthorModel
             {
                 AuthorID = author.AuthorID,
                 FirstName = author.FirstName,
                 LastName = author.LastName,
                 Birthday = author.Birthday,
                 Country = author.Country
-            };
+            }).FirstOrDefaultAsync();
         }
 
         public async Task<bool> AddNewAuthor(AuthorModel author)

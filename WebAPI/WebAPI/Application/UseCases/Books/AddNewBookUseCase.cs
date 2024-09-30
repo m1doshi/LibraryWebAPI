@@ -11,7 +11,7 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> AddNewBook(BookModel model)
+        public async virtual Task<int> AddNewBook(BookModel model)
         {
             await unitOfWork.Books.AddNewBook(model);
             return await unitOfWork.SaveChangesAsync();

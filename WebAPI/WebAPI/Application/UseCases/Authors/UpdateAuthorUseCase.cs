@@ -13,12 +13,10 @@ namespace WebAPI.Application.UseCases.Authors
         {
             this.unitOfWork = unitOfWork;
         }
-        public async virtual Task<bool> UpdateAuthor(int authorId, UpdateAuthorRequest data)
+        public async virtual Task<int> UpdateAuthor(int authorId, UpdateAuthorRequest data)
         {
-            var result = await unitOfWork.Authors.UpdateAuthor(authorId, data);
-            if (result == false)
-                throw new EntityNotFoundException("Author", authorId);
-            return result;
+            await unitOfWork.Authors.UpdateAuthor(authorId, data);
+            return await unitOfWork.SaveChangesAsync();
         }
     }
 }

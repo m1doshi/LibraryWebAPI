@@ -13,7 +13,7 @@ namespace WebAPI.Application.UseCases.Users
             this.unitOfWork = unitOfWork;
             this.passwordHasher = passwordHasher;
         }
-        public async Task<int> Register(string userName, string email, string password)
+        public async virtual Task<int> Register(string userName, string email, string password)
         {
             var hashedPassword = passwordHasher.Generate(password);
             UserModel newUser = new();

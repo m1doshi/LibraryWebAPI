@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using WebAPI.Infrastructures.Persistence;
 
-namespace xUnit_tests.ReposTest
+namespace xUnit_tests.InfrastructureTests.Repositories
 {
     public class BookRepositoryTest
     {

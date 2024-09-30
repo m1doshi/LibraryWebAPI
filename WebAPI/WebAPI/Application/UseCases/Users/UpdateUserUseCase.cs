@@ -12,7 +12,7 @@ namespace WebAPI.Application.UseCases.Users
             this.unitOfWork = unitOfWork;
         }
 
-        public async Task<int> UpdateUser(UserModel updatedUser)
+        public async virtual Task<int> UpdateUser(UserModel updatedUser)
         {
             var user = await unitOfWork.Users.GetUserById(updatedUser.UserID);
             if (user == null)

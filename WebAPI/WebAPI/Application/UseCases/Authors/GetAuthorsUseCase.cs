@@ -23,8 +23,6 @@ namespace WebAPI.Application.UseCases.Authors
         public async virtual Task<AuthorModel> GetAuthorById(int authorId)
         {
             var result = await unitOfWork.Authors.GetAuthorById(authorId);
-            if (result == null)
-                throw new EntityNotFoundException("Author", authorId);
             return result;
         }
     }

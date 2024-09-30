@@ -29,8 +29,7 @@ namespace WebAPI.Infrastructures.Repositories
 
         public async Task<UserModel> GetUserByEmail(string email)
         {
-            var user = await dbContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
-            return user == null ? null : new UserModel
+            return await dbContext.Users.Where(user=>user.Email == email).Select(user=>new UserModel
             {
                 UserID = user.UserID,
                 UserName = user.UserName,
@@ -38,32 +37,33 @@ namespace WebAPI.Infrastructures.Repositories
                 PasswordHash = user.PasswordHash,
                 RefreshToken = user.RefreshToken,
                 RefreshTokenExpireTime = user.RefreshTokenExpireTime
-            };
+            }).FirstOrDefaultAsync();
         }
 
         public async Task<UserModel> GetUserById(int userId)
         {
-            var user = await dbContext.Users.FindAsync(userId);
-            return user == null ? null : new UserModel
-            {
-                UserID = user.UserID,
-                UserName = user.UserName,
-                PasswordHash = user.PasswordHash,
-                Email = user.Email
-            };
-        }
-
-        public async Task<UserModel> GetUserByRefreshToken(string refreshToken)
-        {
-            var user = await dbContext.Users.Where(u => u.RefreshToken == refreshToken).FirstOrDefaultAsync();
-            return user == null ? null : new UserModel
+            return await dbContext.Users.Where(user => user.UserID == userId).Select(user => new UserModel
             {
                 UserID = user.UserID,
                 UserName = user.UserName,
                 Email = user.Email,
+                PasswordHash = user.PasswordHash,
                 RefreshToken = user.RefreshToken,
                 RefreshTokenExpireTime = user.RefreshTokenExpireTime
-            };
+            }).FirstOrDefaultAsync();
+        }
+
+        public async Task<UserModel> GetUserByRefreshToken(string refreshToken)
+        {
+            return await dbContext.Users.Where(user => user.RefreshToken == refreshToken).Select(user => new UserModel
+            {
+                UserID = user.UserID,
+                UserName = user.UserName,
+                Email = user.Email,
+                PasswordHash = user.PasswordHash,
+                RefreshToken = user.RefreshToken,
+                RefreshTokenExpireTime = user.RefreshTokenExpireTime
+            }).FirstOrDefaultAsync();
         }
         public async Task<bool> UpdateUser(UserModel updatedUser)
         {

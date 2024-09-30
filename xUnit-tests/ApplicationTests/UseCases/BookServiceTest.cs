@@ -6,7 +6,7 @@ using WebAPI.Infrastructures.Repositories;
 using WebAPI.Infrastructures.Persistence;
 using WebAPI.Domain.Interfaces.UnitOfWork;
 
-namespace xUnit_tests.ServTests
+namespace xUnit_tests.ApplicationTests.UseCases
 {
     public class BookServiceTest
     {
@@ -29,15 +29,21 @@ namespace xUnit_tests.ServTests
             int bookId = 1;
             int userId = 1;
             DateTime returnDate = DateTime.Now.AddDays(1);
+            var request = new IssueBookRequest
+            {
+                BookId = bookId,
+                UserId = userId,
+                ReturnDate = returnDate
+            };
             var book = new BookModel { BookID = bookId, IsAvailable = 1 };
             var user = new UserModel { UserID = userId };
-            unitOfWork.Setup(u=>u.Books.GetBookById(bookId)).ReturnsAsync(book);
-            unitOfWork.Setup(u=>u.Users.GetUserById(userId)).ReturnsAsync(user);
+            unitOfWork.Setup(u => u.Books.GetBookById(bookId)).ReturnsAsync(book);
+            unitOfWork.Setup(u => u.Users.GetUserById(userId)).ReturnsAsync(user);
             unitOfWork.Setup(u => u.Books.UpdateBook(bookId, It.IsAny<UpdateBookRequest>())).ReturnsAsync(true);
             unitOfWork.Setup(u => u.SaveChangesAsync()).ReturnsAsync(1);
-            var result = await bookShareUseCase.IssueBook(bookId, userId, returnDate);
+            var result = await bookShareUseCase.IssueBook(request);
             Assert.True(result);
-            unitOfWork.Verify(u=>u.Books.UpdateBook(bookId, It.IsAny<UpdateBookRequest>()), Times.Once);
+            unitOfWork.Verify(u => u.Books.UpdateBook(bookId, It.IsAny<UpdateBookRequest>()), Times.Once);
             unitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
         }
 
@@ -47,9 +53,15 @@ namespace xUnit_tests.ServTests
             var bookId = 1;
             var userId = 1;
             var returnDate = DateTime.Now.AddDays(14);
+            var request = new IssueBookRequest
+            {
+                BookId = bookId,
+                UserId = userId,
+                ReturnDate = returnDate
+            };
             var book = new BookModel { BookID = bookId, IsAvailable = 0 };
             unitOfWork.Setup(u => u.Books.GetBookById(bookId)).ReturnsAsync(book);
-            var exception = await Assert.ThrowsAsync<Exception>(() => bookShareUseCase.IssueBook(bookId, userId, returnDate));
+            var exception = await Assert.ThrowsAsync<Exception>(() => bookShareUseCase.IssueBook(request));
             Assert.Equal("The book is unavailable", exception.Message);
             unitOfWork.Verify(u => u.Books.UpdateBook(It.IsAny<int>(), It.IsAny<UpdateBookRequest>()), Times.Never);
         }
@@ -60,10 +72,16 @@ namespace xUnit_tests.ServTests
             var bookId = 1;
             var userId = 1;
             var returnDate = DateTime.Now.AddDays(14);
+            var request = new IssueBookRequest
+            {
+                BookId = bookId,
+                UserId = userId,
+                ReturnDate = returnDate
+            };
             var book = new BookModel { BookID = bookId, IsAvailable = 1 };
             unitOfWork.Setup(u => u.Books.GetBookById(bookId)).ReturnsAsync(book);
             unitOfWork.Setup(u => u.Users.GetUserById(userId)).ReturnsAsync((UserModel)null);
-            var exception = await Assert.ThrowsAsync<Exception>(() => bookShareUseCase.IssueBook(bookId, userId, returnDate));
+            var exception = await Assert.ThrowsAsync<Exception>(() => bookShareUseCase.IssueBook(request));
             Assert.Equal("User not found", exception.Message);
             unitOfWork.Verify(u => u.Books.UpdateBook(It.IsAny<int>(), It.IsAny<UpdateBookRequest>()), Times.Never);
         }
@@ -83,7 +101,7 @@ namespace xUnit_tests.ServTests
         public async Task ReturnBook_ShouldThrowException_IfBookIsUnavailable()
         {
             var bookId = 1;
-            unitOfWork.Setup(u=>u.Books.GetBookById(bookId)).ReturnsAsync((BookModel)null);
+            unitOfWork.Setup(u => u.Books.GetBookById(bookId)).ReturnsAsync((BookModel)null);
             var exception = await Assert.ThrowsAsync<Exception>(() => bookShareUseCase.ReturnBook(bookId));
             Assert.Equal("The book is already returned or not found", exception.Message);
             unitOfWork.Verify(u => u.Books.UpdateBook(It.IsAny<int>(), It.IsAny<UpdateBookRequest>()), Times.Never);
@@ -101,13 +119,13 @@ namespace xUnit_tests.ServTests
                 ReturnTime = DateTime.Now.AddDays(1),
                 UserID = 1
             };
-            unitOfWork.Setup(u=>u.Books.GetBookById(bookId)).ReturnsAsync(book);
+            unitOfWork.Setup(u => u.Books.GetBookById(bookId)).ReturnsAsync(book);
             unitOfWork.Setup(u => u.Books.UpdateBook(bookId, It.IsAny<UpdateBookRequest>())).ReturnsAsync(true);
             unitOfWork.Setup(u => u.SaveChangesAsync()).ReturnsAsync(1);
             var result = await bookShareUseCase.ReturnBook(bookId);
             Assert.True(result);
-            unitOfWork.Verify(u=>u.Books.UpdateBook(bookId,It.IsAny<UpdateBookRequest>()),Times.Once);
-            unitOfWork.Verify(u=>u.SaveChangesAsync(), Times.Once);
+            unitOfWork.Verify(u => u.Books.UpdateBook(bookId, It.IsAny<UpdateBookRequest>()), Times.Once);
+            unitOfWork.Verify(u => u.SaveChangesAsync(), Times.Once);
         }
 
     }

@@ -13,24 +13,20 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
+        public async virtual Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
         {
             pageNumber = pageNumber < 1 ? 1 : pageNumber;
             pageSize = pageSize < 1 ? 1 : pageSize;
             return await unitOfWork.Books.GetAllBooks(pageNumber, pageSize);
         }
-        public async Task<BookModel> GetBookById(int bookId)
+        public async virtual Task<BookModel> GetBookById(int bookId)
         {
             var result = await unitOfWork.Books.GetBookById(bookId);
-            if (result == null)
-                throw new EntityNotFoundException("Book", bookId);
             return result;
         }
-        public async Task<BookModel> GetBookByISBN(string isbn)
+        public async virtual Task<BookModel> GetBookByISBN(string isbn)
         {
             var result = await unitOfWork.Books.GetBookByISBN(isbn);
-            if (result == null)
-                throw new EntityNotFoundException("Book", isbn);
             return result;
         }
     }

@@ -4,7 +4,7 @@ using WebAPI.Infrastructures.Repositories;
 using WebAPI.Domain.Entities;
 using WebAPI.Infrastructures.Persistence;
 
-namespace xUnit_tests.ReposTest
+namespace xUnit_tests.InfrastructureTests.Repositories
 {
     public class UserRepositoryTest
     {
@@ -79,8 +79,13 @@ namespace xUnit_tests.ReposTest
             };
             context.Users.Add(newUser);
             await context.SaveChangesAsync();
-            var updatedUser = new UserModel { UserID = newUser.UserID, RoleID = 3, RefreshToken = "newQwerty",
-                RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7) };
+            var updatedUser = new UserModel
+            {
+                UserID = newUser.UserID,
+                RoleID = 3,
+                RefreshToken = "newQwerty",
+                RefreshTokenExpireTime = DateTime.UtcNow.AddDays(7)
+            };
             await repository.UpdateUser(updatedUser);
             await context.SaveChangesAsync();
             var user = await context.Users.FindAsync(1);

@@ -13,11 +13,9 @@ namespace WebAPI.Application.UseCases.Books
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task<int> DeleteBook(int bookId)
+        public async virtual Task<int> DeleteBook(int bookId)
         {
-            var result = await unitOfWork.Books.DeleteBook(bookId);
-            if (result == false)
-                throw new EntityNotFoundException("Book", bookId);
+            await unitOfWork.Books.DeleteBook(bookId);
             return await unitOfWork.SaveChangesAsync();
         }
     }

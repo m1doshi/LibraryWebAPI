@@ -29,12 +29,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationTests\UseCases\" />
-    <Folder Include="ApplicationTests\Validators\" />
-    <Folder Include="DomainTests\Entities\" />
-    <Folder Include="InfrastructureTests\Repositories\" />
-    <Folder Include="InfrastructureTests\Persistence\" />
-  </ItemGroup>
-
 </Project>

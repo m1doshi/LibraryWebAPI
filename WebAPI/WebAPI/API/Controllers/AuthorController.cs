@@ -7,6 +7,7 @@ using WebAPI.Application.UseCases.Authors;
 using WebAPI.Application.Validators;
 using WebAPI.Domain.Entities;
 using WebAPI.Application.Exceptions;
+using WebAPI.Domain.Exceptions;
 
 
 namespace WebAPI.API.Controllers
@@ -39,7 +40,7 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAllAuthors(int pageNumber, int pageSize)
-        {
+        {   
             return Ok(await getAuthorsService.GetAllAuthors(pageNumber, pageSize));
         }
 
@@ -50,7 +51,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAuthorById(int authorId)
         {
-             return Ok(await getAuthorsService.GetAuthorById(authorId));
+            var result = await getAuthorsService.GetAuthorById(authorId);
+            if(result == null)
+            {
+                return BadRequest(new EntityNotFoundException("Author", authorId));
+            }
+             return Ok(result);
         }
 
         [HttpPost("addNewAuthor")]
@@ -84,7 +90,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> DeleteAuthor(int authorId)
         {
-            return Ok(await deleteAuthorService.DeleteAuthor(authorId));
+            var result = await deleteAuthorService.DeleteAuthor(authorId);
+            if(result == 0)
+            {
+                return BadRequest(new EntityNotFoundException("Author", authorId));
+            }
+            return Ok(result);
         }
 
         [HttpGet("getAllBooksByAuthor")]
@@ -94,7 +105,12 @@ namespace WebAPI.API.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult> GetAllBooksByAuthor(int authorId)
         {
-            return Ok(await getAllBooksByAuthorService.GetAllBooksByAuthor(authorId));
+            var result = await getAllBooksByAuthorService.GetAllBooksByAuthor(authorId);
+            if (result.Count() == 0) 
+            {
+                return BadRequest(new EntityNotFoundException("Author", authorId));
+            }
+            return Ok(result);
         }
     }
 }
