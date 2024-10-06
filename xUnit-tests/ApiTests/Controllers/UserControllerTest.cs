@@ -1,21 +1,11 @@
-﻿using Azure;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPI.API.Controllers;
-using WebAPI.Application.DTOs;
 using WebAPI.Application.UseCases.Users;
-using WebAPI.Application.Validators;
-using WebAPI.Domain.Interfaces.UnitOfWork;
-using WebAPI.Infrastructure.Interfaces;
+using WebAPI.Core.DTOs;
+using WebAPI.Core.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Interfaces;
 
 namespace xUnit_tests.ApiTests.Controllers

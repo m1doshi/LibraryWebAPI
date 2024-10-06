@@ -1,3 +1,7 @@
 {
+  "Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\Application",
+  "Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\Domain",
+  "DataAccess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\DataAccess",
+  "Infrastructures, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\Infrastructure",
   "WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\user\\Desktop\\modsen TZ\\WebAPI\\WebAPI"
 }

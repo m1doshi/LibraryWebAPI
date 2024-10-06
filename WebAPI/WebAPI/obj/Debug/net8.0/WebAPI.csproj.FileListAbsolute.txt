@@ -152,7 +152,6 @@ C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Swashbuckle.AspNe
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\WebAPI.sourcelink.json
-C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\API\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -162,3 +161,12 @@ C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Microsoft.Extensi
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Application.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Core.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\DataAccess.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Infrastructures.dll
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Application.pdb
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Core.pdb
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\DataAccess.pdb
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\bin\Debug\net8.0\Infrastructures.pdb
+C:\Users\user\Desktop\modsen TZ\WebAPI\WebAPI\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css

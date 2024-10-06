@@ -1,10 +1,9 @@
 ﻿using Moq;
 using WebAPI.Application.UseCases.Users;
-using WebAPI.Application.DTOs;
 using WebAPI.Infrastructures.Interfaces;
-using WebAPI.Infrastructure.Interfaces;
-using WebAPI.Domain.Interfaces.Repositories;
-using WebAPI.Domain.Interfaces.UnitOfWork;
+using WebAPI.Core.Interfaces.UnitOfWork;
+using WebAPI.Core.Interfaces.Repositories;
+using WebAPI.Core.DTOs;
 
 
 namespace xUnit_tests.ApplicationTests.UseCases

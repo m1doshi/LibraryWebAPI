@@ -1,25 +1,10 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Moq;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
-using WebAPI.API.Controllers;
-using WebAPI.Application.DTOs;
-using WebAPI.Application.UseCases.Books;
-using WebAPI.Application.Validators;
-using WebAPI.Domain.Entities;
-using WebAPI.Domain.Exceptions;
-using WebAPI.Domain.Interfaces.UnitOfWork;
+using WebAPI.Core.DTOs;
 
 namespace xUnit_tests.ApiTests.Controllers
 {

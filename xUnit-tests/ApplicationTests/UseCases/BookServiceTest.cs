@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
 using WebAPI.Application.UseCases.Books;
-using WebAPI.Application.DTOs;
-using WebAPI.Infrastructures.Repositories;
-using WebAPI.Infrastructures.Persistence;
-using WebAPI.Domain.Interfaces.UnitOfWork;
+using WebAPI.DataAccess;
+using WebAPI.Core.Interfaces.UnitOfWork;
+using WebAPI.DataAccess.Repositories;
+using WebAPI.Core.DTOs;
 
 namespace xUnit_tests.ApplicationTests.UseCases
 {
