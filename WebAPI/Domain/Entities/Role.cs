@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebAPI.DataAccess.Entities
+namespace WebAPI.Core.Entities
 {
     [Table("Roles")]
     public class Role

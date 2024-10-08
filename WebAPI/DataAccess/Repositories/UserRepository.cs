@@ -1,7 +1,8 @@
 ﻿using WebAPI.Core.Interfaces.Repositories;
 using WebAPI.Core.DTOs;
-using WebAPI.DataAccess.Entities;
+using WebAPI.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Core.Interfaces.UnitOfWork;
 
 namespace WebAPI.DataAccess.Repositories
 {
@@ -14,62 +15,40 @@ namespace WebAPI.DataAccess.Repositories
             this.dbContext = dbContext;
         }
 
-        public async Task<bool> AddNewUser(UserModel user)
+        public async Task<bool> AddNewUser(User user)
         {
-            User userEntity = new();
-            userEntity.UserName = user.UserName;
-            userEntity.PasswordHash = user.PasswordHash;
-            userEntity.Email = user.Email;
-            await dbContext.Users.AddAsync(userEntity);
+            var result = await dbContext.Users.AddAsync(user);
+            return result != null;
+        }
+        public async Task<IEnumerable<User>> GetAllUsers()
+        {
+            return await dbContext.Users.ToListAsync();
+        }
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return await dbContext.Users.Where(user => user.Email == email).SingleOrDefaultAsync();
+        }
+
+        public async Task<User> GetUserById(int userId)
+        {
+            return await dbContext.Users.FindAsync(userId);
+        }
+
+        public async Task<User> GetUserByRefreshToken(string refreshToken)
+        {
+            return await dbContext.Users.Where(user => user.RefreshToken == refreshToken).SingleOrDefaultAsync();
+        }
+        public async Task<bool> DeleteUser(int userId)
+        {
+            var user = await dbContext.Users.FindAsync(userId);
+            if (user == null) return false;
+            dbContext.Users.Remove(user);
             return true;
         }
-
-        public async Task<UserModel> GetUserByEmail(string email)
+        public async Task<bool> UpdateUser(User user)
         {
-            return await dbContext.Users.Where(user=>user.Email == email).Select(user=>new UserModel
-            {
-                UserID = user.UserID,
-                UserName = user.UserName,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash,
-                RefreshToken = user.RefreshToken,
-                RefreshTokenExpireTime = user.RefreshTokenExpireTime
-            }).FirstOrDefaultAsync();
-        }
-
-        public async Task<UserModel> GetUserById(int userId)
-        {
-            return await dbContext.Users.Where(user => user.UserID == userId).Select(user => new UserModel
-            {
-                UserID = user.UserID,
-                UserName = user.UserName,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash,
-                RefreshToken = user.RefreshToken,
-                RefreshTokenExpireTime = user.RefreshTokenExpireTime
-            }).FirstOrDefaultAsync();
-        }
-
-        public async Task<UserModel> GetUserByRefreshToken(string refreshToken)
-        {
-            return await dbContext.Users.Where(user => user.RefreshToken == refreshToken).Select(user => new UserModel
-            {
-                UserID = user.UserID,
-                UserName = user.UserName,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash,
-                RefreshToken = user.RefreshToken,
-                RefreshTokenExpireTime = user.RefreshTokenExpireTime
-            }).FirstOrDefaultAsync();
-        }
-        public async Task<bool> UpdateUser(UserModel updatedUser)
-        {
-            var user = await dbContext.Users.FindAsync(updatedUser.UserID);
-            user.UserName = updatedUser.UserName;
-            user.RoleID = updatedUser.RoleID;
-            user.RefreshTokenExpireTime = updatedUser.RefreshTokenExpireTime;
-            user.RefreshToken = updatedUser.RefreshToken;
-            return user.UserName != null;
+            var result = dbContext.Users.Update(user);
+            return result != null;
         }
 
     }

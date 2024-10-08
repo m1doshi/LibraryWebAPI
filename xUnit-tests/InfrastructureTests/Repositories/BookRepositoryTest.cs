@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using WebAPI.DataAccess;
 using WebAPI.DataAccess.Repositories;
-using WebAPI.DataAccess.Entities;
+using WebAPI.Core.Entities;
 using WebAPI.Core.DTOs;
+using Core.DTOs;
 
 namespace xUnit_tests.InfrastructureTests.Repositories
 {
@@ -148,7 +149,7 @@ namespace xUnit_tests.InfrastructureTests.Repositories
             context.Books.Add(newBook);
             await context.SaveChangesAsync();
             var newData = new UpdateBookRequest { ISBN = "001", Genre = "test001" };
-            await repository.UpdateBook(1, newData);
+            await repository.UpdateBook(newData);
             await context.SaveChangesAsync();
             var updatedBook = await context.Books.FindAsync(1);
 

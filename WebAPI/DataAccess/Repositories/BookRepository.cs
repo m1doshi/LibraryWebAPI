@@ -1,6 +1,6 @@
 ﻿using WebAPI.Core.Interfaces.Repositories;
 using WebAPI.Core.DTOs;
-using WebAPI.DataAccess.Entities;
+using WebAPI.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,92 +14,42 @@ namespace WebAPI.DataAccess.Repositories
         {
             this.dbContext = dbContext;
         }
-
-        public async Task<IEnumerable<BookModel>> GetAllBooks(int pageNumber, int pageSize)
+        public async Task<IEnumerable<Book>> GetAllBooks(int pageNumber, int pageSize)
         {
             var skip = (pageNumber - 1) * pageSize;
-            return await dbContext.Books.Skip(skip).Take(pageSize).Select(b => new BookModel
-            {
-                BookID = b.BookID,
-                ISBN = b.ISBN,
-                BookTitle = b.BookTitle,
-                Genre = b.Genre,
-                Description = b.Description,
-                AuthorID = b.AuthorID,
-                PickUpTime = b.PickUpTime,
-                ReturnTime = b.ReturnTime,
-            }).ToListAsync();
+            return await dbContext.Books.Skip(skip).Take(pageSize).ToListAsync();
         }
-        public async Task<BookModel> GetBookById(int bookId)
+        public async Task<Book> GetBookById(int bookId)
         {
-            return await dbContext.Books.Where(book=>book.BookID == bookId).Select(book => new BookModel
-            {
-                BookID = book.BookID,
-                ISBN = book.ISBN,
-                BookTitle = book.BookTitle,
-                Genre = book.Genre,
-                Description = book.Description,
-                AuthorID = book.AuthorID,
-                PickUpTime = book.PickUpTime,
-                ReturnTime = book.ReturnTime,
-            }).FirstOrDefaultAsync();
+            return await dbContext.Books.FindAsync(bookId);
         }
-        public async Task<BookModel> GetBookByISBN(string isbn)
+        public async Task<Book> GetBookByISBN(string isbn)
         {
-            return await dbContext.Books.Where(book => book.ISBN == isbn).Select(book => new BookModel
-            {
-                BookID = book.BookID,
-                ISBN = book.ISBN,
-                BookTitle = book.BookTitle,
-                Genre = book.Genre,
-                Description = book.Description,
-                AuthorID = book.AuthorID,
-                PickUpTime = book.PickUpTime,
-                ReturnTime = book.ReturnTime,
-            }).FirstOrDefaultAsync();
+            return await dbContext.Books.Where(b => b.ISBN == isbn).SingleOrDefaultAsync();
         }
-        public async Task<bool> AddNewBook(BookModel book)
+        public async Task<bool> AddNewBook(Book book)
         {
-            Book newBook = new();
-            newBook.ISBN = book.ISBN;
-            newBook.BookTitle = book.BookTitle;
-            newBook.Genre = book.Genre;
-            newBook.Description = book.Description;
-            newBook.AuthorID = book.AuthorID;
-            newBook.PickUpTime = book.PickUpTime;
-            newBook.ReturnTime = book.ReturnTime;
-            return await dbContext.Books.AddAsync(newBook) != null;
+            var result = await dbContext.Books.AddAsync(book);
+            return result != null;
         }
-
         public async Task<bool> DeleteBook(int bookId)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            var result = dbContext.Books.Remove(book);
+            if(book == null) return false;
+            dbContext.Books.Remove(book);
+            return true;
+        }
+        public async Task<bool> UpdateBook(Book book)
+        {
+            var result = dbContext.Books.Update(book);
             return result != null;
         }
-
-        public async Task<bool> UpdateBook(int bookId, UpdateBookRequest data)
-        {
-            var book = await dbContext.Books.Where(b=>b.BookID == bookId).FirstOrDefaultAsync();
-            book.ISBN = data.ISBN;
-            book.BookTitle = data.BookTitle;
-            book.Genre = data.Genre;
-            book.Description = data.Description;
-            book.AuthorID = data.AuthorID;
-            book.PickUpTime = data.PickUpTime;
-            book.ReturnTime = data.ReturnTime;
-            book.IsAvailable = data.IsAvailable;
-            book.UserID = data.UserID;
-            return book.ISBN != null;
-        }
-        public async Task<bool> UpdateImage(int bookId, IFormFile image)
+        public async Task<bool> UpdateImage(int bookId, byte[] imageData)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            using (var memoryStream = new MemoryStream())
-            {
-                await image.CopyToAsync(memoryStream);
-                book.Image = memoryStream.ToArray();
-            }
+            if( book == null ) return false;
+            book.Image = imageData;
+            dbContext.Books.Update(book);
             return true;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using WebAPI.Core.DTOs;
+using WebAPI.Core.Entities;
 using WebAPI.Core.Interfaces.UnitOfWork;
 
 namespace WebAPI.Application.UseCases.Authors
@@ -12,7 +13,14 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async virtual Task<int> AddNewAuthor(AuthorModel author)
         {
-            await unitOfWork.Authors.AddNewAuthor(author);
+            Author newAuthor = new Author
+            {
+                FirstName = author.FirstName,
+                LastName = author.LastName,
+                Birthday = author.Birthday,
+                Country = author.Country
+            };
+            await unitOfWork.Authors.AddNewAuthor(newAuthor);
             return await unitOfWork.SaveChangesAsync();
         }
     }

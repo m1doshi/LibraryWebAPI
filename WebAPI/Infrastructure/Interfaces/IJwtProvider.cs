@@ -1,9 +1,10 @@
 ﻿using WebAPI.Core.DTOs;
+using WebAPI.Core.Entities;
 
 namespace WebAPI.Infrastructures.Interfaces
 {
     public interface IJwtProvider
     {
-        string GenerateToken(UserModel user);
+        string GenerateToken(User user);
     }
 }

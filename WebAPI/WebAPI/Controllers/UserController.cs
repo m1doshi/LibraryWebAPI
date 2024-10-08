@@ -3,6 +3,8 @@ using WebAPI.Core.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using WebAPI.Application.UseCases.Users;
 using FluentValidation;
+using Application.UseCases.Users;
+using WebAPI.DataAccess.Exceptions;
 
 namespace WebAPI.API.Controllers
 {
@@ -14,16 +16,23 @@ namespace WebAPI.API.Controllers
         private readonly RegisterUseCase registerService;
         private readonly UpdateTokensUseCase updateTokensService;
         private readonly UpdateUserUseCase updateUserService;
+        private readonly DeleteUserUseCase deleteUserService;
+        private readonly GetUsersUseCase getUsersService;
+
 
         public UserController(LoginUseCase loginService,
             RegisterUseCase registerService,
             UpdateTokensUseCase updateTokensService,
-            UpdateUserUseCase updateUserService)
+            UpdateUserUseCase updateUserService,
+            DeleteUserUseCase deleteUserService,
+            GetUsersUseCase getUsersService)
         {
             this.registerService = registerService;
             this.loginService = loginService;
             this.updateTokensService = updateTokensService;
             this.updateUserService = updateUserService;
+            this.deleteUserService = deleteUserService;
+            this.getUsersService = getUsersService;
         }
         
         [HttpPost("registration")]
@@ -73,7 +82,74 @@ namespace WebAPI.API.Controllers
             return Ok(await updateUserService.UpdateUser(updatedUser));
         }
 
+        [HttpGet("getAllUsers")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> GetAllUsers()
+        {
+            return Ok(await getUsersService.GetAllUsers());
+        }
 
+        [HttpGet("getUserById")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> GetUserById(int userId)
+        {
+            var result = await getUsersService.GetUserById(userId);
+            if (result == null)
+            {
+                return BadRequest(new EntityNotFoundException("User", userId));
+            }
+            return Ok(result);
+        }
 
+        [HttpGet("getUserByEmail")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> GetUserByEmail(string email)
+        {
+            var result = await getUsersService.GetUserByEmail(email);
+            if (result == null)
+            {
+                return BadRequest(new EntityNotFoundException("User", email));
+            }
+            return Ok(result);
+        }
+
+        [HttpGet("getUserByRefreshToken")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> GetUserByRefreshToken(string token)
+        {
+            var result = await getUsersService.GetUserByRefreshToken(token);
+            if (result == null)
+            {
+                return BadRequest(new EntityNotFoundException("User", token));
+            }
+            return Ok(result);
+        }
+
+        [HttpDelete("deleteUser")]
+        [Authorize(Policy = "AdminOnly")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult> DeleteUser(int userId)
+        {
+            var result = await deleteUserService.DeleteUser(userId);
+            if (result == 0)
+            {
+                return BadRequest(new EntityNotFoundException("User", userId));
+            }
+            return Ok(result);
+        }
     }
 }

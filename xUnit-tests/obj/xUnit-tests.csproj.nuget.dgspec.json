@@ -133,7 +133,7 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[9.0.0-rc.2.24474.1, )"
             }
           },
           "imports": [
@@ -515,7 +515,7 @@
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[9.0.0-rc.2.24474.1, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",

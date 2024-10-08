@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebAPI.DataAccess;
 using WebAPI.DataAccess.Repositories;
-using WebAPI.DataAccess.Entities;
+using WebAPI.Core.Entities;
 using WebAPI.Core.DTOs;
 
 namespace xUnit_tests.InfrastructureTests.Repositories

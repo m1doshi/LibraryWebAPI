@@ -15,11 +15,12 @@ namespace WebAPI.Application.UseCases.Users
         public async virtual Task<int> UpdateUser(UserModel updatedUser)
         {
             var user = await unitOfWork.Users.GetUserById(updatedUser.UserID);
-            if (user == null)
-            {
-                throw new EntityNotFoundException("User", updatedUser.UserID);
-            }
-            await unitOfWork.Users.UpdateUser(updatedUser);
+            if (user == null) return 0;
+            user.UserName = updatedUser.UserName;
+            user.Email = updatedUser.Email;
+            user.PasswordHash = updatedUser.PasswordHash;
+            user.RoleID = updatedUser.RoleID;
+            await unitOfWork.Users.UpdateUser(user);
             return await unitOfWork.SaveChangesAsync();
         }
     }

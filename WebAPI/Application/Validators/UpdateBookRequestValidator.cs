@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using WebAPI.Core.DTOs;
+﻿using Core.DTOs;
+using FluentValidation;
 
 namespace WebAPI.Application.Validators
 {

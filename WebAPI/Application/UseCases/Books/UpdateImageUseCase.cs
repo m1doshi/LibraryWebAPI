@@ -12,13 +12,13 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async virtual Task<int> UpdateImage(int bookId, IFormFile image)
         {
-            var book = unitOfWork.Books.GetBookById(bookId);
-            if (book!=null && image != null && image.Length > 0)
+            using (var memoryStream = new MemoryStream())
             {
-                await unitOfWork.Books.UpdateImage(bookId, image);
-                return await unitOfWork.SaveChangesAsync();
+                await image.CopyToAsync(memoryStream);
+                var imageData = memoryStream.ToArray();
+                await unitOfWork.Books.UpdateImage(bookId, imageData);
             }
-            return 0;
+            return await unitOfWork.SaveChangesAsync();
         }
     }
 }

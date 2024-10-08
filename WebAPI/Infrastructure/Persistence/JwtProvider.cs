@@ -5,6 +5,7 @@ using System.Text;
 using System.Security.Claims;
 using WebAPI.Infrastructures.Interfaces;
 using WebAPI.Core.DTOs;
+using WebAPI.Core.Entities;
 
 namespace WebAPI.Infrastructures.Persistence
 {
@@ -15,7 +16,7 @@ namespace WebAPI.Infrastructures.Persistence
         {
             this.options = options.Value;
         }
-        public string GenerateToken(UserModel user)
+        public string GenerateToken(User user)
         {
             Claim[] claims = [new("userId", user.UserID.ToString()), new("roleId",user.RoleID.ToString())];
 

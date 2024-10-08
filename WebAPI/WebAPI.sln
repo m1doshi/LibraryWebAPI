@@ -16,17 +16,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "xUnit-tests", "..\xUnit-tes
 		{C337584B-3221-4006-B228-7BE17DEE5A63} = {C337584B-3221-4006-B228-7BE17DEE5A63}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Domain\Core.csproj", "{3BCA46F0-457C-46FC-B10D-49340C1D9476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Domain\Core.csproj", "{3BCA46F0-457C-46FC-B10D-49340C1D9476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C916399E-3035-4CBF-BE8F-FDB228EBBC45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{C916399E-3035-4CBF-BE8F-FDB228EBBC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{13FD5D3F-B502-47BC-9D9F-BEAFE41FD30C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{13FD5D3F-B502-47BC-9D9F-BEAFE41FD30C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3BCA46F0-457C-46FC-B10D-49340C1D9476} = {3BCA46F0-457C-46FC-B10D-49340C1D9476}
 		{89DE0832-36C4-4C5E-8A0D-CFC9F35CA1C8} = {89DE0832-36C4-4C5E-8A0D-CFC9F35CA1C8}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructures", "Infrastructure\Infrastructures.csproj", "{89DE0832-36C4-4C5E-8A0D-CFC9F35CA1C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructures", "Infrastructure\Infrastructures.csproj", "{89DE0832-36C4-4C5E-8A0D-CFC9F35CA1C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

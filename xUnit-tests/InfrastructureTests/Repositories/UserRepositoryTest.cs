@@ -2,7 +2,7 @@
 using WebAPI.DataAccess;
 using WebAPI.DataAccess.Repositories;
 using WebAPI.Core.DTOs;
-using WebAPI.DataAccess.Entities;
+using WebAPI.Core.Entities;
 
 namespace xUnit_tests.InfrastructureTests.Repositories
 {

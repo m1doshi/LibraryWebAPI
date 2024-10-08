@@ -1,4 +1,5 @@
 ﻿using WebAPI.Core.DTOs;
+using WebAPI.Core.Entities;
 using WebAPI.Core.Interfaces.UnitOfWork;
 using WebAPI.Infrastructures.Interfaces;
 
@@ -16,7 +17,7 @@ namespace WebAPI.Application.UseCases.Users
         public async virtual Task<int> Register(string userName, string email, string password)
         {
             var hashedPassword = passwordHasher.Generate(password);
-            UserModel newUser = new();
+            User newUser = new();
             newUser.UserName = userName;
             newUser.Email = email;
             newUser.PasswordHash = hashedPassword;

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebAPI.DataAccess.Entities
+namespace WebAPI.Core.Entities
 {
     [Table("Books")]
     public class Book

@@ -1,5 +1,6 @@
 ﻿using WebAPI.Core.DTOs;
 using WebAPI.Core.Interfaces.UnitOfWork;
+using WebAPI.Core.Entities;
 
 namespace WebAPI.Application.UseCases.Authors
 {
@@ -12,8 +13,16 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async virtual Task<IEnumerable<BookModel>> GetAllBooksByAuthor(int authorId)
         {
-            var result = await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
-            return result;
+            var books = await unitOfWork.Authors.GetAllBooksByAuthor(authorId);
+            return books.Select(b => new BookModel
+            {
+                BookID = b.BookID,
+                AuthorID = b.AuthorID,
+                ISBN = b.ISBN,
+                BookTitle = b.BookTitle,
+                Genre = b.Genre,
+                Description = b.Description
+            });
         }
     }
 }

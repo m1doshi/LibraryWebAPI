@@ -13,6 +13,7 @@ using FluentValidation.AspNetCore;
 using WebAPI.Core.Interfaces.Repositories;
 using WebAPI.DataAccess.Repositories;
 using WebAPI.Core.Interfaces.UnitOfWork;
+using Application.UseCases.Users;
 
 public class Program
 {
@@ -78,6 +79,8 @@ public class Startup
         services.AddScoped<RegisterUseCase>();
         services.AddScoped<UpdateTokensUseCase>();
         services.AddScoped<UpdateUserUseCase>();
+        services.AddScoped<DeleteUserUseCase>();
+        services.AddScoped<GetUsersUseCase>();
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddScoped<IPasswordHasher, PasswordHasher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebAPI.Core.DTOs;
 using WebAPI.Application.UseCases.Books;
 using WebAPI.DataAccess.Exceptions;
+using Core.DTOs;
 
 namespace WebAPI.API.Controllers
 {
@@ -139,11 +140,11 @@ namespace WebAPI.API.Controllers
                 }
                 return Ok(result);
             }
-            catch (BusinessRuleViolationException ex)
+            catch (EntityNotFoundException ex)
             {
                 return BadRequest(ex.Message);
             }
-            catch (EntityNotFoundException ex)
+            catch (BusinessRuleViolationException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -164,6 +165,10 @@ namespace WebAPI.API.Controllers
                     return BadRequest("Unable to return the book.");
                 }
                 return Ok(result);
+            }
+            catch (EntityNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (BusinessRuleViolationException ex)
             {
