@@ -29,25 +29,23 @@ namespace WebAPI.DataAccess.Repositories
         }
         public async Task<bool> AddNewBook(Book book)
         {
-            var result = await dbContext.Books.AddAsync(book);
-            return result != null;
+            await dbContext.Books.AddAsync(book);
+            return true;
         }
         public async Task<bool> DeleteBook(int bookId)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if(book == null) return false;
             dbContext.Books.Remove(book);
             return true;
         }
         public async Task<bool> UpdateBook(Book book)
         {
-            var result = dbContext.Books.Update(book);
-            return result != null;
+            dbContext.Books.Update(book);
+            return true;
         }
         public async Task<bool> UpdateImage(int bookId, byte[] imageData)
         {
             var book = await dbContext.Books.FindAsync(bookId);
-            if( book == null ) return false;
             book.Image = imageData;
             dbContext.Books.Update(book);
             return true;

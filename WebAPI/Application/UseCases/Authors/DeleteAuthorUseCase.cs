@@ -11,6 +11,8 @@ namespace WebAPI.Application.UseCases.Authors
         }
         public async virtual Task<int> DeleteAuthor(int authorId)
         {
+            var author = await unitOfWork.Authors.GetAuthorById(authorId);
+            if (author == null) return 0;
             await unitOfWork.Authors.DeleteAuthor(authorId);
             return await unitOfWork.SaveChangesAsync();
         }

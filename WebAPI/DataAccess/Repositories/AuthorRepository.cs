@@ -25,17 +25,13 @@ namespace WebAPI.DataAccess.Repositories
 
         public async Task<bool> AddNewAuthor(Author newAuthor)
         {
-            var result = await dbContext.Authors.AddAsync(newAuthor);
-            return result != null;
+            await dbContext.Authors.AddAsync(newAuthor);
+            return true;
         }
 
         public async Task<bool> DeleteAuthor(int authorId)
         {
             var author = await dbContext.Authors.FindAsync(authorId);
-            if(author == null)
-            {
-                return false;
-            }
             dbContext.Authors.Remove(author);
             return true;
         }
@@ -45,8 +41,8 @@ namespace WebAPI.DataAccess.Repositories
         }
         public async Task<bool> UpdateAuthor(Author author)
         {
-            var result = dbContext.Authors.Update(author);
-            return result != null;
+            dbContext.Authors.Update(author);
+            return true;
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Application.UseCases.Users
         }
         public async Task<int> DeleteUser(int userId)
         {
+            var user = await unitOfWork.Users.GetUserById(userId);
+            if (user == null) return 0;
             await unitOfWork.Users.DeleteUser(userId);
             return await unitOfWork.SaveChangesAsync();
         }

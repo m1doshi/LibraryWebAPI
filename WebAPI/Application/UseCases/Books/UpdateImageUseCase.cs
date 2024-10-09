@@ -12,6 +12,8 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async virtual Task<int> UpdateImage(int bookId, IFormFile image)
         {
+            var book = await unitOfWork.Books.GetBookById(bookId);
+            if (book == null) return 0;
             using (var memoryStream = new MemoryStream())
             {
                 await image.CopyToAsync(memoryStream);

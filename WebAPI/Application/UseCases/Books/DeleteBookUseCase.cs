@@ -11,6 +11,8 @@ namespace WebAPI.Application.UseCases.Books
         }
         public async virtual Task<int> DeleteBook(int bookId)
         {
+            var book = await unitOfWork.Books.GetBookById(bookId);
+            if (book == null) return 0;
             await unitOfWork.Books.DeleteBook(bookId);
             return await unitOfWork.SaveChangesAsync();
         }

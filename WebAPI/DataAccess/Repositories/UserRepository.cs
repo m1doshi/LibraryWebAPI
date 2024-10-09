@@ -17,8 +17,8 @@ namespace WebAPI.DataAccess.Repositories
 
         public async Task<bool> AddNewUser(User user)
         {
-            var result = await dbContext.Users.AddAsync(user);
-            return result != null;
+            await dbContext.Users.AddAsync(user);
+            return true;
         }
         public async Task<IEnumerable<User>> GetAllUsers()
         {
@@ -41,14 +41,13 @@ namespace WebAPI.DataAccess.Repositories
         public async Task<bool> DeleteUser(int userId)
         {
             var user = await dbContext.Users.FindAsync(userId);
-            if (user == null) return false;
             dbContext.Users.Remove(user);
             return true;
         }
         public async Task<bool> UpdateUser(User user)
         {
-            var result = dbContext.Users.Update(user);
-            return result != null;
+            dbContext.Users.Update(user);
+            return true;
         }
 
     }
